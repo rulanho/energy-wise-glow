@@ -64,7 +64,7 @@ export default function Calculator() {
       : null;
 
   return (
-    <div className="min-h-screen bg-background pb-10">
+    <div className="min-h-screen bg-background pb-20">
       {/* Top bar */}
       <header className="eco-gradient px-5 pb-8 pt-14">
         <div className="flex items-center gap-3">
