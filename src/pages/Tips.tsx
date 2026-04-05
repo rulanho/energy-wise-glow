@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, Sun, Snowflake, Lightbulb } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { LogoBar } from "@/components/LogoBar";
+
 
 interface Tip {
   appliance: string;
@@ -143,7 +143,6 @@ export default function Tips() {
           </div>
         </motion.div>
 
-        <LogoBar className="mt-8" />
       </main>
     </div>
   );
