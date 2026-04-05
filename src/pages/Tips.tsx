@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, Sun, Snowflake, Lightbulb } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { LogoBar } from "@/components/LogoBar";
+
 
 interface Tip {
   appliance: string;
