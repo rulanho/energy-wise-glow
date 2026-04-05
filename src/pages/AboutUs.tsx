@@ -98,13 +98,3 @@ export default function AboutUs() {
     </div>
   );
 }
-
-function PlatformBadge({ icon, label }: { icon: string; label: string }) {
-  return (
-    <div className="flex flex-col items-center gap-1.5 rounded-xl bg-accent/50 p-3">
-      <span className="text-2xl">{icon}</span>
-      <span className="text-xs font-semibold text-foreground">{label}</span>
-      <span className="text-[10px] font-medium text-primary">Available</span>
-    </div>
-  );
-}
