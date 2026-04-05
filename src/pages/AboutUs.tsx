@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, Info, Recycle, Shield } from "lucide-react";
+import { ArrowLeft, Info, Recycle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { LogoBar } from "@/components/LogoBar";
+import eeiLogo from "@/assets/eei-logo.png";
+import mineralLogo from "@/assets/mineral-resources-logo.png";
+import sanediLogo from "@/assets/sanedi-logo.png";
 
 export default function AboutUs() {
   const navigate = useNavigate();

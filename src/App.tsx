@@ -9,6 +9,7 @@ import Calculator from "./pages/Calculator";
 import Tips from "./pages/Tips";
 import AboutUs from "./pages/AboutUs";
 import NotFound from "./pages/NotFound";
+import { SplashScreen } from "@/components/SplashScreen";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <SplashScreen />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />

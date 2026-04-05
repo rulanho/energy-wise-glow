@@ -143,7 +143,6 @@ export default function Tips() {
           </div>
         </motion.div>
 
-        <LogoBar className="mt-8" />
       </main>
     </div>
   );

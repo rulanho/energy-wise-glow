@@ -70,7 +70,6 @@ export default function Index() {
           ))}
         </div>
 
-        <LogoBar className="mt-8" />
       </main>
     </div>
   );
