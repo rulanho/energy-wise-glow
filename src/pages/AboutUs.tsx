@@ -76,28 +76,22 @@ export default function AboutUs() {
           </div>
         </motion.div>
 
-        {/* Platform Availability */}
+        {/* Powered By */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.4 }}
           className="mt-4 rounded-2xl bg-card p-5 shadow-card"
         >
-          <div className="mb-3 flex items-center gap-2">
-            <Shield className="h-5 w-5 text-primary" />
-            <h2 className="text-base font-bold text-foreground">Platform Availability</h2>
-          </div>
-          <div className="grid grid-cols-3 gap-3">
-            <PlatformBadge icon="🌐" label="Web App" />
-            <PlatformBadge icon="🤖" label="Android" />
-            <PlatformBadge icon="🍎" label="iOS" />
-          </div>
-          <p className="mt-3 text-xs text-muted-foreground">
-            Also compatible with Huawei devices via Android APK.
+          <p className="mb-4 text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+            Powered by
           </p>
+          <div className="flex items-center justify-center gap-5">
+            <img src={eeiLogo} alt="Energy Efficiency Initiative" className="h-16 w-auto object-contain" />
+            <img src={mineralLogo} alt="Department of Mineral Resources and Energy" className="h-14 w-auto object-contain" />
+            <img src={sanediLogo} alt="SANEDI" className="h-14 w-auto object-contain" />
+          </div>
         </motion.div>
-
-        <LogoBar className="mt-8" />
       </main>
     </div>
   );
