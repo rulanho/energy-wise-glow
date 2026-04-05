@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Zap } from "lucide-react";
 import { appliances } from "@/data/appliances";
 import { ApplianceCard } from "@/components/ApplianceCard";
-import { LogoBar } from "@/components/LogoBar";
 import eeiLogo from "@/assets/eei-logo.png";
 
 export default function Index() {
