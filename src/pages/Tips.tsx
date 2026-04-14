@@ -177,9 +177,13 @@ export default function Tips() {
 }
 
 function TipCard({ group, accent = "primary" }: { group: Tip; accent?: "primary" | "secondary" }) {
+  const IconComponent = applianceIcons[group.appliance];
   return (
     <div className="rounded-2xl bg-card p-4 shadow-card">
-      <h3 className="mb-2 text-sm font-bold text-foreground">{group.appliance}</h3>
+      <div className="mb-2 flex items-center gap-2">
+        {IconComponent && <IconComponent className={`h-4 w-4 ${accent === "secondary" ? "text-secondary" : "text-primary"}`} />}
+        <h3 className="text-sm font-bold text-foreground">{group.appliance}</h3>
+      </div>
       <ul className="space-y-1.5">
         {group.tips.map((tip, i) => (
           <li key={i} className="flex gap-2 text-xs text-muted-foreground">
