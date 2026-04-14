@@ -1,7 +1,18 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Sun, Snowflake, Lightbulb } from "lucide-react";
+import { ArrowLeft, Sun, Snowflake, Lightbulb, AirVent, Wind, WashingMachine, CookingPot, Refrigerator, Droplets, Thermometer, Fan, type LucideIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+
+const applianceIcons: Record<string, LucideIcon> = {
+  "Air Conditioners": AirVent,
+  "Tumble Dryers": Wind,
+  "Washing Machines": WashingMachine,
+  "Electric Ovens": CookingPot,
+  "Refrigerators": Refrigerator,
+  "Washer Dryers": Droplets,
+  "Water Heaters": Thermometer,
+  "Fans": Fan,
+};
 
 
 interface Tip {
