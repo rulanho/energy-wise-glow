@@ -116,41 +116,50 @@ export default function Tips() {
       </header>
 
       <main className="-mt-3 rounded-t-3xl bg-background px-5 pt-6">
-        {/* Summer */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          <div className="mb-4 flex items-center gap-2">
-            <Sun className="h-5 w-5 text-secondary" />
-            <h2 className="text-base font-bold text-foreground">Tips for Summer</h2>
-          </div>
-          <div className="space-y-3">
-            {summerTips.map((group) => (
-              <TipCard key={group.appliance} group={group} />
-            ))}
-          </div>
-        </motion.div>
+        <Tabs defaultValue="summer" className="w-full">
+          <TabsList className="grid w-full grid-cols-2 mb-5 rounded-xl bg-muted/60 p-1">
+            <TabsTrigger
+              value="summer"
+              className="flex items-center gap-2 rounded-lg data-[state=active]:bg-secondary/20 data-[state=active]:text-secondary data-[state=active]:shadow-sm"
+            >
+              <Sun className="h-4 w-4" />
+              Summer
+            </TabsTrigger>
+            <TabsTrigger
+              value="winter"
+              className="flex items-center gap-2 rounded-lg data-[state=active]:bg-primary/20 data-[state=active]:text-primary data-[state=active]:shadow-sm"
+            >
+              <Snowflake className="h-4 w-4" />
+              Winter
+            </TabsTrigger>
+          </TabsList>
 
-        {/* Winter */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15, duration: 0.4 }}
-          className="mt-8"
-        >
-          <div className="mb-4 flex items-center gap-2">
-            <Snowflake className="h-5 w-5 text-primary" />
-            <h2 className="text-base font-bold text-foreground">Tips for Winter</h2>
-          </div>
-          <div className="space-y-3">
-            {winterTips.map((group) => (
-              <TipCard key={group.appliance} group={group} />
-            ))}
-          </div>
-        </motion.div>
+          <TabsContent value="summer">
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-3"
+            >
+              {summerTips.map((group) => (
+                <TipCard key={group.appliance} group={group} accent="secondary" />
+              ))}
+            </motion.div>
+          </TabsContent>
 
+          <TabsContent value="winter">
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-3"
+            >
+              {winterTips.map((group) => (
+                <TipCard key={group.appliance} group={group} accent="primary" />
+              ))}
+            </motion.div>
+          </TabsContent>
+        </Tabs>
       </main>
     </div>
   );
