@@ -165,14 +165,14 @@ export default function Tips() {
   );
 }
 
-function TipCard({ group }: { group: Tip }) {
+function TipCard({ group, accent = "primary" }: { group: Tip; accent?: "primary" | "secondary" }) {
   return (
     <div className="rounded-2xl bg-card p-4 shadow-card">
       <h3 className="mb-2 text-sm font-bold text-foreground">{group.appliance}</h3>
       <ul className="space-y-1.5">
         {group.tips.map((tip, i) => (
           <li key={i} className="flex gap-2 text-xs text-muted-foreground">
-            <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+            <span className={`mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full ${accent === "secondary" ? "bg-secondary" : "bg-primary"}`} />
             <span>{tip}</span>
           </li>
         ))}
