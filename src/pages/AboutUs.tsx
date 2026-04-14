@@ -42,7 +42,7 @@ export default function AboutUs() {
           </p>
         </motion.div>
 
-        {/* Recycling Section */}
+        {/* Old/Broken Appliances Section */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -51,30 +51,48 @@ export default function AboutUs() {
         >
           <div className="mb-3 flex items-center gap-2">
             <Recycle className="h-5 w-5 text-primary" />
-            <h2 className="text-base font-bold text-foreground">Recycling & Reporting</h2>
+            <h2 className="text-base font-bold text-foreground">Use of Old/Broken Appliances</h2>
           </div>
-          <div className="space-y-3 text-sm leading-relaxed text-muted-foreground">
-            <p>
-              <strong className="text-foreground">Outdated/old appliances:</strong> The EPR Waste
-              Association of South Africa (eWASA) is a registered Producer Responsibility
-              Organisation (PRO) with The Department of Forestry, Fisheries and the Environment
-              (DFFE). For more information on where to recycle appliances, consumers can contact
-              eWASA via{" "}
-              <a href="mailto:info@ewasa.org" className="font-medium text-primary underline">
-                info@ewasa.org
-              </a>{" "}
-              or call +27 31 535 7146.
-            </p>
-            <p>
-              <strong className="text-foreground">Unlawful trading reporting:</strong> The NRCS
-              inspectors maintain constant surveillance of regulated products and services in the
-              market. If consumers or members of industry have any information, they are encouraged
-              to contact{" "}
-              <a href="mailto:info@nrcs.org.za" className="font-medium text-primary underline">
-                info@nrcs.org.za
-              </a>{" "}
-              or call +27 (12) 482 8700/8802.
-            </p>
+          <h3 className="mb-2 text-sm font-semibold text-foreground">Recycling and Reporting Data</h3>
+          <div className="space-y-4 text-sm leading-relaxed text-muted-foreground">
+            <div>
+              <p className="mb-1 font-semibold text-foreground">Outdated/old appliances</p>
+              <p>
+                The EPR Waste Association of South Africa (eWASA) is a registered Producer
+                Responsibility Organisation (PRO) with The Department of Forestry, Fisheries and
+                the Environment (DFFE) for the Electrical and Electronic Equipment (EEE), Lighting,
+                Portable Batteries, Lubricant Oils and Paper and Packaging Sectors. For more
+                information on where to recycle appliances, consumers can contact eWASA via{" "}
+                <a href="mailto:info@ewasa.org" className="font-medium text-primary underline">
+                  info@ewasa.org
+                </a>{" "}
+                or call{" "}
+                <a href="tel:+27315357146" className="font-medium text-primary underline">
+                  +27 31 535 7146
+                </a>.
+              </p>
+            </div>
+            <div>
+              <p className="mb-1 font-semibold text-foreground">Unlawful trading reporting</p>
+              <p>
+                EE Appliances Consumer and Industry watch dog — The NRCS inspectors maintain
+                constant surveillance of regulated products and services in the market. In executing
+                its mandate, the NRCS relies heavily on intelligence and information provided by
+                industry, commerce, and consumers.
+              </p>
+              <p className="mt-2">
+                If consumers or members of industry have information about any of the products and
+                services that are regulated in South Africa, or if they have any suggestions that
+                will assist government in becoming more effective, they are encouraged to contact:{" "}
+                <a href="mailto:info@nrcs.org.za" className="font-medium text-primary underline">
+                  info@nrcs.org.za
+                </a>{" "}
+                or call{" "}
+                <a href="tel:+27124828700" className="font-medium text-primary underline">
+                  +27 (12) 482 8700/8802
+                </a>.
+              </p>
+            </div>
           </div>
         </motion.div>
 
