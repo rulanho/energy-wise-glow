@@ -20,18 +20,18 @@ const summerTips: Tip[] = [
   {
     appliance: "Tumble Dryers",
     tips: [
-      "Air dry your clothes whenever possible.",
+      "Air dry your clothes.",
       "For greater efficiency and less drying time, maintain a lint-free screen.",
     ],
   },
   {
     appliance: "Washing Machines",
-    tips: ["Washing clothes in cold water will eliminate the need to heat them."],
+    tips: ["Washing clothes in cold water will eliminate the need to heat for them."],
   },
   {
     appliance: "Electric Ovens",
     tips: [
-      "Make use of smaller appliances like a toaster oven or microwave for economic cooking.",
+      "Make use of smaller appliances like a toaster oven or microwave to ensure economic cooking.",
       "Only preheat oven when needed and use the remaining heat to end baking.",
     ],
   },
@@ -43,6 +43,10 @@ const summerTips: Tip[] = [
     ],
   },
   {
+    appliance: "Washer Dryers",
+    tips: ["Choose eco-friendly wash cycles."],
+  },
+  {
     appliance: "Water Heaters",
     tips: ["Adjust thermostat to 49°C to save electricity."],
   },
@@ -50,17 +54,17 @@ const summerTips: Tip[] = [
 
 const winterTips: Tip[] = [
   {
-    appliance: "Fans & Heating",
+    appliance: "Fans",
     tips: [
-      "Open windows on cooler days to allow fresh air to circulate and decrease heating usage.",
-      "Adjust thermostat to a higher setting or change mode if your unit supports heating.",
+      "Open windows on cooler days to allow fresh air circulate and decrease heating usage.",
+      "Adjust thermostat to a higher setting or change mode from a/c unit if it is also set for heating.",
     ],
   },
   {
     appliance: "Tumble Dryers",
     tips: [
       "Do smaller loads in the dryer.",
-      "The dryer vent must be cleared to avoid moisture build-up.",
+      "The dryer vent must be cleared to avoid the moisture built-up.",
     ],
   },
   {
@@ -70,20 +74,23 @@ const winterTips: Tip[] = [
   {
     appliance: "Electric Ovens",
     tips: [
-      "Cook in large quantities to take advantage of the oven's heat.",
-      "Check through the oven light rather than frequently opening the door.",
+      "Cook in huge quantities to take advantage of the oven's heat.",
+      "Check through oven light than frequently opening the door to check on food.",
     ],
   },
   {
     appliance: "Refrigerators",
-    tips: ["Adjust to higher temperatures during winter to save energy."],
+    tips: ["Adjust to higher temperatures to save energy."],
+  },
+  {
+    appliance: "Washer Dryers",
+    tips: ["Avoid overloading the washer dryer to conserve energy."],
   },
   {
     appliance: "Water Heaters",
-    tips: ["Take shorter showers and use cold water for laundry."],
+    tips: ["Take shorter showers and use cold for laundry."],
   },
 ];
-
 export default function Tips() {
   const navigate = useNavigate();
 
