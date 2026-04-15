@@ -107,7 +107,7 @@ export default function Tips() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-background pb-10">
+    <div className="min-h-screen bg-background pb-24">
       <header className="eco-gradient px-5 pb-8 pt-14">
         <div className="flex items-center gap-3">
           <button

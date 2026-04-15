@@ -106,7 +106,7 @@ export default function AboutUs() {
           <p className="mb-4 text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             Powered by
           </p>
-          <div className="flex items-center justify-center gap-5">
+          <div className="flex flex-col items-center justify-center gap-4">
             <img src={eeiLogo} alt="Energy Efficiency Initiative" className="h-16 w-auto object-contain" />
             <img src={mineralLogo} alt="Department of Mineral Resources and Energy" className="h-14 w-auto object-contain" />
             <img src={sanediLogo} alt="SANEDI" className="h-14 w-auto object-contain" />

@@ -36,11 +36,11 @@ export function SplashScreen() {
             </p>
           </motion.div>
 
-          <div className="flex items-center justify-center gap-6">
+          <div className="flex flex-col items-center justify-center gap-4">
             {[
               { src: eeiLogo, alt: "EEI", delay: 0.3, h: "h-20" },
-              { src: mineralLogo, alt: "Mineral Resources", delay: 0.5, h: "h-16" },
-              { src: sanediLogo, alt: "SANEDI", delay: 0.7, h: "h-16" },
+              { src: mineralLogo, alt: "Mineral Resources", delay: 0.5, h: "h-14" },
+              { src: sanediLogo, alt: "SANEDI", delay: 0.7, h: "h-14" },
             ].map((logo) => (
               <motion.img
                 key={logo.alt}
