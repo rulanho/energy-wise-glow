@@ -106,6 +106,7 @@ export default function Calculator() {
                   min={f.min}
                   max={f.max}
                   unit={f.unit}
+                  hint={f.hint}
                 />
               ))}
             </div>
@@ -124,6 +125,7 @@ export default function Calculator() {
                 min={f.min}
                 max={f.max}
                 unit={f.unit}
+                hint={f.hint}
               />
             ))}
           </div>
@@ -141,6 +143,7 @@ export default function Calculator() {
                 min={f.min}
                 max={f.max}
                 unit={f.unit}
+                hint={f.hint}
               />
             ))}
           </div>

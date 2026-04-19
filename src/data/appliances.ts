@@ -17,6 +17,7 @@ export interface ApplianceField {
   unit?: string;
   defaultValue?: number;
   isHousehold?: boolean;
+  hint?: string;
 }
 
 export interface Appliance {
@@ -77,11 +78,46 @@ export const appliances: Appliance[] = [
     name: "Light Bulb",
     image: lightbulbImg,
     fields: [
-      householdElectricity,
-      { key: "hoursPerDay", label: "Hours used per day", min: 0, max: 24, unit: "hrs", defaultValue: 0, isHousehold: true },
-      { key: "daysPerYear", label: "Days used per year", min: 0, max: 366, unit: "days", defaultValue: 365, isHousehold: true },
-      { key: "purchasePrice", label: "Purchase Price", min: 0, max: 5000, unit: "R" },
-      { key: "wattage", label: "Wattage", min: 0, max: 1000, unit: "W" },
+      {
+        ...householdElectricity,
+        hint: "You can find the kWh cost of electricity in your municipality by looking at your electricity bill.",
+      },
+      {
+        key: "hoursPerDay",
+        label: "Hours used per day",
+        min: 0,
+        max: 24,
+        unit: "hrs",
+        defaultValue: 0,
+        isHousehold: true,
+        hint: "Estimate how many hours this bulb is switched on during a typical day (max 24).",
+      },
+      {
+        key: "daysPerYear",
+        label: "Days used per year",
+        min: 0,
+        max: 366,
+        unit: "days",
+        defaultValue: 365,
+        isHousehold: true,
+        hint: "Number of days the bulb is in use per year (default 365).",
+      },
+      {
+        key: "purchasePrice",
+        label: "Purchase Price",
+        min: 0,
+        max: 5000,
+        unit: "R",
+        hint: "The price you paid (or would pay) for the bulb in Rand.",
+      },
+      {
+        key: "wattage",
+        label: "Wattage",
+        min: 0,
+        max: 1000,
+        unit: "W",
+        hint: "Found on the bulb packaging or printed on the bulb itself (e.g., 9W, 60W).",
+      },
     ],
     calcType: "wattage-based",
   },
