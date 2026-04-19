@@ -202,31 +202,43 @@ export default function Calculator() {
 
         {/* Results */}
         <AnimatePresence>
-          {showResults && results1 && results2 && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.4 }}
-              className="mt-6"
-            >
-              <h2 className="mb-4 text-base font-bold text-foreground">Comparison Results</h2>
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <ResultCard
-                  label={`${appliance.name} 1`}
-                  results={results1}
-                  isBetter={better === 1}
-                  index={0}
-                />
-                <ResultCard
-                  label={`${appliance.name} 2`}
-                  results={results2}
-                  isBetter={better === 2}
-                  index={1}
-                />
-              </div>
-            </motion.div>
-          )}
+          {showResults && (results1 || results2) && (() => {
+            const isFilled = (vals: ValuesMap) => itemFields.every((f) => (vals[f.key] ?? 0) > 0);
+            const show1 = isFilled(item1) && results1;
+            const show2 = isFilled(item2) && results2;
+            const bothShown = show1 && show2;
+            return (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.4 }}
+                className="mt-6"
+              >
+                <h2 className="mb-4 text-base font-bold text-foreground">
+                  {bothShown ? "Comparison Results" : "Results"}
+                </h2>
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  {show1 && (
+                    <ResultCard
+                      label={`${appliance.name} 1`}
+                      results={results1!}
+                      isBetter={bothShown && better === 1}
+                      index={0}
+                    />
+                  )}
+                  {show2 && (
+                    <ResultCard
+                      label={`${appliance.name} 2`}
+                      results={results2!}
+                      isBetter={bothShown && better === 2}
+                      index={1}
+                    />
+                  )}
+                </div>
+              </motion.div>
+            );
+          })()}
         </AnimatePresence>
       </main>
     </div>
