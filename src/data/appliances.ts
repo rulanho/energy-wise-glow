@@ -36,12 +36,27 @@ const householdElectricity: ApplianceField = {
   unit: "R",
   defaultValue: 2.4,
   isHousehold: true,
+  hint: "You can find the kWh cost of electricity in your municipality by looking at your electricity bill.",
 };
 
 const annualKwhFields: (maxPrice: number) => ApplianceField[] = (maxPrice) => [
   householdElectricity,
-  { key: "purchasePrice", label: "Purchase Price", min: 0, max: maxPrice, unit: "R" },
-  { key: "annualKwh", label: "Annual energy consumption (kWh)", min: 0, max: 10000, unit: "kWh" },
+  {
+    key: "purchasePrice",
+    label: "Purchase Price",
+    min: 0,
+    max: maxPrice,
+    unit: "R",
+    hint: "The retail price you paid (or would pay) for the appliance, in Rand.",
+  },
+  {
+    key: "annualKwh",
+    label: "Annual energy consumption (kWh)",
+    min: 0,
+    max: 10000,
+    unit: "kWh",
+    hint: "The kWh figure given on the energy efficiency label of the appliance.",
+  },
 ];
 
 export const appliances: Appliance[] = [

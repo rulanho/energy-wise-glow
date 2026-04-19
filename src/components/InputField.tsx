@@ -1,3 +1,12 @@
+import { Info } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { useIsMobile } from "@/hooks/use-mobile";
+
 interface InputFieldProps {
   label: string;
   value: number;
@@ -9,14 +18,48 @@ interface InputFieldProps {
 }
 
 export function InputField({ label, value, onChange, min, max, unit, hint }: InputFieldProps) {
+  const isMobile = useIsMobile();
+
+  const HintIcon = hint ? (
+    isMobile ? (
+      <Popover>
+        <PopoverTrigger asChild>
+          <button
+            type="button"
+            aria-label={`More info about ${label}`}
+            className="inline-flex h-4 w-4 items-center justify-center rounded-full text-muted-foreground hover:text-primary"
+          >
+            <Info className="h-3.5 w-3.5" />
+          </button>
+        </PopoverTrigger>
+        <PopoverContent side="top" className="max-w-[260px] text-xs leading-relaxed">
+          {hint}
+        </PopoverContent>
+      </Popover>
+    ) : (
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <button
+            type="button"
+            aria-label={`More info about ${label}`}
+            className="inline-flex h-4 w-4 items-center justify-center rounded-full text-muted-foreground hover:text-primary"
+          >
+            <Info className="h-3.5 w-3.5" />
+          </button>
+        </TooltipTrigger>
+        <TooltipContent side="top" className="max-w-[260px] text-xs leading-relaxed">
+          {hint}
+        </TooltipContent>
+      </Tooltip>
+    )
+  ) : null;
+
   return (
     <div className="space-y-1.5">
-      <label className="text-xs font-medium text-muted-foreground">{label}</label>
-      {hint && (
-        <div className="rounded-lg border border-border bg-muted/40 px-3 py-2">
-          <p className="text-[11px] leading-relaxed text-muted-foreground">{hint}</p>
-        </div>
-      )}
+      <div className="flex items-center gap-1.5">
+        <label className="text-xs font-medium text-muted-foreground">{label}</label>
+        {HintIcon}
+      </div>
       <div className="relative">
         <input
           type="number"
