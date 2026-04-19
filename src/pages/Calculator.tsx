@@ -6,6 +6,7 @@ import { appliances } from "@/data/appliances";
 import { calculate, type CalcInputs } from "@/lib/calculator";
 import { InputField } from "@/components/InputField";
 import { ResultCard } from "@/components/ResultCard";
+import { toast } from "@/hooks/use-toast";
 
 type ValuesMap = Record<string, number>;
 
