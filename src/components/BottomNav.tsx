@@ -1,9 +1,10 @@
-import { Home, Lightbulb, Info } from "lucide-react";
+import { Home, Lightbulb, HelpCircle, Info } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const navItems = [
   { path: "/", icon: Home, label: "Home" },
   { path: "/tips", icon: Lightbulb, label: "Tips" },
+  { path: "/faq", icon: HelpCircle, label: "FAQs" },
   { path: "/about", icon: Info, label: "About" },
 ];
 
@@ -20,7 +21,7 @@ export function BottomNav() {
             <button
               key={item.path}
               onClick={() => navigate(item.path)}
-              className={`flex flex-col items-center gap-0.5 px-4 py-1 transition-colors ${
+              className={`flex flex-col items-center gap-0.5 px-3 py-1 transition-colors ${
                 active ? "text-primary" : "text-muted-foreground"
               }`}
             >

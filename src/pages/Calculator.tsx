@@ -86,8 +86,9 @@ export default function Calculator() {
             height={64}
             className="h-16 w-16 rounded-xl bg-primary-foreground/10 object-contain p-2"
           />
-          <p className="text-sm text-primary-foreground/70">
-            Compare two {appliance.name.toLowerCase()} options to find the most cost-effective & eco-friendly choice.
+          <p className="text-sm leading-relaxed text-primary-foreground/80">
+            Understand how much energy this {appliance.name.toLowerCase()} will use and what it
+            costs to run long-term — make a more informed purchase decision.
           </p>
         </div>
       </header>
