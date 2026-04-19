@@ -38,8 +38,11 @@ export default function Index() {
             <br />
             Calculator
           </h1>
-          <p className="mt-2 text-sm text-primary-foreground/70">
-            Compare energy costs & CO₂ emissions to make smarter choices
+          <p className="mt-2 text-sm leading-relaxed text-primary-foreground/80">
+            When purchasing an appliance, it is important to understand how much energy it will
+            use and as a result how much money it costs to run the appliance. These calculation
+            tools were created to aid consumers to make more informed decisions by calculating
+            the long-term cost for running an appliance.
           </p>
         </motion.div>
 
