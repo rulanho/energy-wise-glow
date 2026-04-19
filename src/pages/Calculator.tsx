@@ -6,6 +6,7 @@ import { appliances } from "@/data/appliances";
 import { calculate, type CalcInputs } from "@/lib/calculator";
 import { InputField } from "@/components/InputField";
 import { ResultCard } from "@/components/ResultCard";
+import { toast } from "@/hooks/use-toast";
 
 type ValuesMap = Record<string, number>;
 
@@ -145,10 +146,55 @@ export default function Calculator() {
           </div>
         </Section>
 
+        {/* Validation helpers */}
+        {(() => null)()}
+
         {/* Calculate button */}
         <motion.button
           whileTap={{ scale: 0.97 }}
-          onClick={() => setShowResults(true)}
+          onClick={() => {
+            const errors: string[] = [];
+
+            // Household required fields
+            householdFields.forEach((f) => {
+              const v = household[f.key] ?? 0;
+              if (v <= 0) errors.push(`${f.label} must be greater than 0`);
+            });
+
+            // Per-item required fields
+            const checkItem = (vals: ValuesMap, label: string) => {
+              itemFields.forEach((f) => {
+                const v = vals[f.key] ?? 0;
+                if (v <= 0) errors.push(`${label}: ${f.label} must be greater than 0`);
+              });
+            };
+            checkItem(item1, `${appliance.name} 1`);
+            checkItem(item2, `${appliance.name} 2`);
+
+            if (errors.length > 0) {
+              toast({
+                title: "Please complete all fields",
+                description: errors.slice(0, 3).join(" • ") + (errors.length > 3 ? ` (+${errors.length - 3} more)` : ""),
+                variant: "destructive",
+              });
+              setShowResults(false);
+              return;
+            }
+
+            // Practical sanity check: identical inputs
+            const sameInputs = itemFields.every((f) => (item1[f.key] ?? 0) === (item2[f.key] ?? 0));
+            if (sameInputs) {
+              toast({
+                title: "Inputs are identical",
+                description: `Enter different values for ${appliance.name} 1 and ${appliance.name} 2 to compare.`,
+                variant: "destructive",
+              });
+              setShowResults(false);
+              return;
+            }
+
+            setShowResults(true);
+          }}
           className="mt-6 w-full rounded-2xl eco-gradient py-4 text-base font-bold text-primary-foreground shadow-elevated"
         >
           Compare Results
