@@ -224,6 +224,19 @@ const faqs: FAQItem[] = [
       </>
     ),
   },
+  {
+    category: "Compliance",
+    keywords: "border sars customs excise prevent imports loa nrcs memorandum",
+    q: "How are non-compliant appliances prevented from entering South Africa?",
+    a: (
+      <>
+        The NRCS has signed a memorandum of agreement with the Customs and Excise component of
+        SARS. Under this agreement, no importer is granted market entry into South Africa for
+        appliances within the scope of Appliance Standards and Labelling that do not have a valid
+        LOA issued by the NRCS.
+      </>
+    ),
+  },
 ];
 
 export default function FAQ() {
