@@ -1,20 +1,27 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, HelpCircle } from "lucide-react";
+import { ArrowLeft, HelpCircle, Search, ExternalLink } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useMemo, useState } from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
 
 interface FAQItem {
   q: string;
   a: React.ReactNode;
+  category: string;
+  keywords: string;
 }
 
 const faqs: FAQItem[] = [
   {
+    category: "Governance",
+    keywords: "sabs nrcs department energy responsible implementing",
     q: "Who is responsible for implementing Appliance Standards and Labelling?",
     a: (
       <>
@@ -30,6 +37,8 @@ const faqs: FAQItem[] = [
     ),
   },
   {
+    category: "Purpose",
+    keywords: "why introduced reduce electricity cost co2 emissions manufacturers",
     q: "Why has Appliance Standards and Labelling been introduced?",
     a: (
       <ul className="list-disc space-y-1 pl-5">
@@ -41,6 +50,8 @@ const faqs: FAQItem[] = [
     ),
   },
   {
+    category: "Purpose",
+    keywords: "objectives minimum energy performance consumer understanding",
     q: "What are the objectives of Appliance Standards and Labelling?",
     a: (
       <ul className="list-disc space-y-1 pl-5">
@@ -53,6 +64,8 @@ const faqs: FAQItem[] = [
     ),
   },
   {
+    category: "Appliances",
+    keywords: "which appliances label fridge freezer aircon dishwasher washing machine bulb",
     q: "Which appliances must display a South African Energy Efficiency Label?",
     a: (
       <ul className="list-disc space-y-1 pl-5">
@@ -69,6 +82,8 @@ const faqs: FAQItem[] = [
     ),
   },
   {
+    category: "Costs",
+    keywords: "cost energy run appliance calculator long term",
     q: "What would the cost be of the energy required to run an appliance?",
     a: (
       <>
@@ -80,6 +95,8 @@ const faqs: FAQItem[] = [
     ),
   },
   {
+    category: "Standards",
+    keywords: "meps minimum energy performance standards class b aircon",
     q: "What are Minimum Energy Performance Standards (MEPS)?",
     a: (
       <>
@@ -91,6 +108,8 @@ const faqs: FAQItem[] = [
     ),
   },
   {
+    category: "Standards",
+    keywords: "loa letter authority nrcs manufacturer importer",
     q: "What is a Letter of Authority (LOA)?",
     a: (
       <>
@@ -101,6 +120,8 @@ const faqs: FAQItem[] = [
     ),
   },
   {
+    category: "Compliance",
+    keywords: "non compliance recall confiscate destroy regulations",
     q: "What happens if manufacturers do not conform to the regulations?",
     a: (
       <>
@@ -111,6 +132,8 @@ const faqs: FAQItem[] = [
     ),
   },
   {
+    category: "Compliance",
+    keywords: "report non compliance false label nrcs",
     q: "How can non-compliance be reported?",
     a: (
       <>
@@ -129,64 +152,128 @@ const faqs: FAQItem[] = [
 
 export default function FAQ() {
   const navigate = useNavigate();
+  const [query, setQuery] = useState("");
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return faqs;
+    return faqs.filter(
+      (f) =>
+        f.q.toLowerCase().includes(q) ||
+        f.keywords.toLowerCase().includes(q) ||
+        f.category.toLowerCase().includes(q),
+    );
+  }, [query]);
 
   return (
-    <div className="min-h-screen bg-background pb-24">
-      <header className="eco-gradient px-5 pb-8 pt-14">
+    <div className="min-h-screen bg-background pb-28">
+      <header className="eco-gradient px-5 pb-10 pt-14">
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate("/")}
-            className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-foreground/20"
+            className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-foreground/20 transition-colors hover:bg-primary-foreground/30"
             aria-label="Back to home"
           >
             <ArrowLeft className="h-5 w-5 text-primary-foreground" />
           </button>
           <h1 className="text-lg font-bold text-primary-foreground">FAQs</h1>
         </div>
-        <div className="mt-4 flex items-center gap-3">
-          <HelpCircle className="h-8 w-8 text-secondary" />
-          <p className="text-sm text-primary-foreground/70">
-            Frequently asked questions about Appliance Energy Efficiency, Standards and Labelling
-            in South Africa.
-          </p>
+
+        <div className="mt-5 flex items-start gap-3">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-primary-foreground/15 backdrop-blur-sm">
+            <HelpCircle className="h-6 w-6 text-secondary" />
+          </div>
+          <div>
+            <h2 className="text-base font-bold text-primary-foreground">
+              How can we help?
+            </h2>
+            <p className="mt-1 text-xs leading-relaxed text-primary-foreground/75">
+              Common questions about Appliance Energy Efficiency, Standards and Labelling in South Africa.
+            </p>
+          </div>
+        </div>
+
+        {/* Search */}
+        <div className="relative mt-5">
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search questions…"
+            className="h-11 rounded-xl border-0 bg-background pl-9 text-sm shadow-card focus-visible:ring-2 focus-visible:ring-secondary"
+          />
         </div>
       </header>
 
-      <main className="-mt-3 rounded-t-3xl bg-background px-5 pt-6">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
+      <main className="-mt-5 rounded-t-3xl bg-background px-5 pt-6">
+        <div className="mb-4 flex items-center justify-between">
+          <p className="text-xs font-medium text-muted-foreground">
+            {filtered.length} {filtered.length === 1 ? "question" : "questions"}
+          </p>
+          {query && (
+            <button
+              onClick={() => setQuery("")}
+              className="text-xs font-medium text-primary hover:underline"
+            >
+              Clear
+            </button>
+          )}
+        </div>
+
+        {filtered.length === 0 ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="rounded-2xl border border-dashed border-border bg-card/50 p-8 text-center"
+          >
+            <HelpCircle className="mx-auto mb-2 h-8 w-8 text-muted-foreground/50" />
+            <p className="text-sm font-medium text-foreground">No results found</p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              Try a different search term.
+            </p>
+          </motion.div>
+        ) : (
           <Accordion type="single" collapsible className="w-full space-y-3">
-            {faqs.map((item, i) => (
-              <AccordionItem
-                key={i}
-                value={`item-${i}`}
-                className="rounded-2xl border border-border bg-card px-4 shadow-card"
+            {filtered.map((item, i) => (
+              <motion.div
+                key={item.q}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.03, duration: 0.25 }}
               >
-                <AccordionTrigger className="text-left text-sm font-bold text-foreground hover:no-underline">
-                  {item.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-xs leading-relaxed text-muted-foreground">
-                  {item.a}
-                </AccordionContent>
-              </AccordionItem>
+                <AccordionItem
+                  value={`item-${i}`}
+                  className="overflow-hidden rounded-2xl border border-border/60 bg-card px-4 shadow-card transition-shadow data-[state=open]:shadow-lg"
+                >
+                  <AccordionTrigger className="gap-3 py-4 text-left text-sm font-semibold text-foreground hover:no-underline">
+                    <div className="flex flex-1 flex-col items-start gap-1.5">
+                      <Badge
+                        variant="secondary"
+                        className="rounded-full bg-primary/10 px-2 py-0 text-[10px] font-medium uppercase tracking-wide text-primary hover:bg-primary/10"
+                      >
+                        {item.category}
+                      </Badge>
+                      <span>{item.q}</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="border-t border-border/40 pt-3 text-xs leading-relaxed text-muted-foreground">
+                    {item.a}
+                  </AccordionContent>
+                </AccordionItem>
+              </motion.div>
             ))}
           </Accordion>
+        )}
 
-          <p className="mt-6 text-center text-[11px] text-muted-foreground">
-            Source:{" "}
-            <a
-              href="https://www.savingenergy.org.za/asl/faqs/index.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-primary underline"
-            >
-              savingenergy.org.za
-            </a>
-          </p>
-        </motion.div>
+        <a
+          href="https://www.savingenergy.org.za/asl/faqs/index.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 flex items-center justify-center gap-1.5 rounded-xl border border-border/60 bg-card py-3 text-xs font-medium text-primary shadow-card transition-colors hover:bg-primary/5"
+        >
+          More on savingenergy.org.za
+          <ExternalLink className="h-3.5 w-3.5" />
+        </a>
       </main>
     </div>
   );
