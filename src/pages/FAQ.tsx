@@ -64,6 +64,30 @@ const faqs: FAQItem[] = [
     ),
   },
   {
+    category: "Legislation",
+    keywords: "national energy act 34 2008 vc 9110 9109 8043 9006 9008 9091 regulations gazette",
+    q: "What legislation regulates Appliance Standards and Labelling?",
+    a: (
+      <>
+        <p>
+          The <span className="font-semibold text-foreground">National Energy Act No 34 of 2008</span>{" "}
+          allows the Minister of Energy to make regulations on labelling for energy efficiency purposes
+          of household appliances, devices and motor vehicles, and the prohibition of the manufacture,
+          importation or sale of electrical and electronic products and fuel-burning appliances for
+          reasons of poor energy efficiency. Key compulsory specifications (VCs) include:
+        </p>
+        <ul className="mt-2 list-disc space-y-1 pl-5">
+          <li>VC 9110 — Safety Requirements of General Service Lamps (GSLs), 2023</li>
+          <li>VC 9109 — Energy Efficiency &amp; Functional Performance of GSLs, 2023</li>
+          <li>VC 8043 — Incandescent Lamps, 2014</li>
+          <li>VC 9006 — Hot Water Storage Tanks for domestic use, 2016</li>
+          <li>VC 9008 — Energy Efficiency &amp; Labelling of Electrical &amp; Electronic Apparatus, 2014</li>
+          <li>VC 9091 — Single-Capped Fluorescent Lamps, 2014</li>
+        </ul>
+      </>
+    ),
+  },
+  {
     category: "Appliances",
     keywords: "which appliances label fridge freezer aircon dishwasher washing machine bulb",
     q: "Which appliances must display a South African Energy Efficiency Label?",
