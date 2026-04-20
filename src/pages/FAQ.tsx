@@ -106,6 +106,27 @@ const faqs: FAQItem[] = [
     ),
   },
   {
+    category: "Labelling",
+    keywords: "label specifications design size sabs guide retailers manufacturers 110 200 55 100",
+    q: "Are there specifications on how the SA Energy Efficiency Label should look and be used?",
+    a: (
+      <>
+        Yes. Detailed specifications for the design and use of the label are set out in several
+        South African National Standards published by the SABS. A{" "}
+        <a
+          href="https://www.savingenergy.org.za/wp-content/uploads/2017/11/A-guide-to-energy-efficiency-labelling.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-primary underline"
+        >
+          guide to energy efficiency labelling
+        </a>{" "}
+        helps retailers and manufacturers understand the requirements. Most appliance labels are
+        110 mm × 200 mm; light bulb labels are 55 mm × 100 mm and optional.
+      </>
+    ),
+  },
+  {
     category: "Costs",
     keywords: "cost energy run appliance calculator long term",
     q: "What would the cost be of the energy required to run an appliance?",
