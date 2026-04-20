@@ -141,26 +141,57 @@ const faqs: FAQItem[] = [
   },
   {
     category: "Standards",
-    keywords: "meps minimum energy performance standards class b aircon",
+    keywords: "meps minimum energy performance standards class b aircon table ratings",
     q: "What are Minimum Energy Performance Standards (MEPS)?",
     a: (
       <>
-        MEPS define the minimum level of energy performance an appliance must meet before it can
-        be sold in South Africa. It is illegal to sell appliances that do not meet the MEPS
-        specified in the regulations. For example, all air conditioners sold in South Africa must
-        have a rating of Class B or better.
+        <p>
+          MEPS define the minimum level of energy performance an appliance must meet before it can
+          be sold in South Africa. It is illegal to sell appliances that do not meet the MEPS in
+          the regulations. Specified MEPS include:
+        </p>
+        <ul className="mt-2 list-disc space-y-1 pl-5">
+          <li>Air Conditioners — Class B or better</li>
+          <li>Audio-visual Equipment — ≤1 W standby (≤3 W for set-top boxes)</li>
+          <li>Dishwashers — Class A</li>
+          <li>Electric Ovens (Large) — Class B; (Small &amp; Medium) — Class A</li>
+          <li>Freezers — Class C</li>
+          <li>Fridges &amp; Fridge-freezers — Class B</li>
+          <li>Storage Water Heater — Class B</li>
+          <li>Tumble Dryers — Class D</li>
+          <li>Washer-dryers &amp; Washing Machines — Class A</li>
+        </ul>
       </>
     ),
   },
   {
     category: "Standards",
-    keywords: "loa letter authority nrcs manufacturer importer",
+    keywords: "loa letter authority nrcs manufacturer importer 3 years",
     q: "What is a Letter of Authority (LOA)?",
     a: (
       <>
         Manufacturers and importers must have a Letter of Authority (LOA) issued by the NRCS
         before an appliance can be sold in South Africa. The LOA verifies that the appliance
         conforms to the MEPS for its category. LOAs are valid for 3 years.
+      </>
+    ),
+  },
+  {
+    category: "Standards",
+    keywords: "how apply loa manufacturer importer steps process",
+    q: "How can a manufacturer or importer apply for a Letter of Authority (LOA)?",
+    a: (
+      <>
+        The steps required to apply for a Letter of Authority are outlined in the{" "}
+        <a
+          href="https://www.savingenergy.org.za/asl/manufacturers-and-importers/loa/index.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-primary underline"
+        >
+          Letter of Authority section
+        </a>{" "}
+        of the savingenergy.org.za website.
       </>
     ),
   },
