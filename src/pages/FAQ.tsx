@@ -354,15 +354,6 @@ export default function FAQ() {
           </Accordion>
         )}
 
-        <a
-          href="https://www.savingenergy.org.za/asl/faqs/index.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-6 flex items-center justify-center gap-1.5 rounded-xl border border-border/60 bg-card py-3 text-xs font-medium text-primary shadow-card transition-colors hover:bg-primary/5"
-        >
-          More on savingenergy.org.za
-          <ExternalLink className="h-3.5 w-3.5" />
-        </a>
       </main>
     </div>
   );
