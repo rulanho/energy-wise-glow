@@ -39,6 +39,19 @@ export default function Index() {
             Enter the details of an appliance to calculate its energy usage and cost.
           </p>
         </motion.div>
+
+        {/* kWh label hint */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25, duration: 0.4 }}
+          className="mt-4 flex items-start gap-2 rounded-xl bg-primary-foreground/10 p-3"
+        >
+          <Tag className="mt-0.5 h-4 w-4 shrink-0 text-secondary" />
+          <p className="text-xs leading-relaxed text-primary-foreground/85">
+            Find the Annual Energy Consumption (kWh/year) on the appliance energy label.
+          </p>
+        </motion.div>
       </header>
 
       {/* Appliance Grid */}
