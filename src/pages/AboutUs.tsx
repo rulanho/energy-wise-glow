@@ -32,7 +32,7 @@ export default function AboutUs() {
         >
           <div className="mb-3 flex items-center gap-2">
             <Info className="h-5 w-5 text-primary" />
-            <h2 className="text-base font-bold text-foreground">Energy Efficiency Calculator</h2>
+            <h2 className="text-base font-bold text-foreground">Appliance Efficiency Calculator</h2>
           </div>
           <p className="text-sm leading-relaxed text-muted-foreground">
             The aim is to estimate annual electricity consumption and operating cost associated with

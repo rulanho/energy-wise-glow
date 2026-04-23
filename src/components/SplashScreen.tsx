@@ -29,10 +29,10 @@ export function SplashScreen() {
             className="mb-6 text-center"
           >
             <h1 className="text-lg font-extrabold text-foreground">
-              Energy Efficiency
+              Appliance Efficiency
             </h1>
             <p className="text-sm font-medium text-muted-foreground">
-              Appliance Calculator
+              Calculator
             </p>
           </motion.div>
 

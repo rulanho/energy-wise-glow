@@ -11,6 +11,7 @@ import FAQ from "./pages/FAQ";
 import AboutUs from "./pages/AboutUs";
 import NotFound from "./pages/NotFound";
 import { SplashScreen } from "@/components/SplashScreen";
+import { Onboarding } from "@/components/Onboarding";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <SplashScreen />
+      <Onboarding />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
