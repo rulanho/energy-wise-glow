@@ -269,8 +269,8 @@ export default function FAQ() {
         </div>
 
         <div className="mt-6 flex items-start gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary-foreground/15 backdrop-blur">
-            <Sparkles className="h-5 w-5 text-primary-foreground" />
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-secondary shadow-elevated ring-2 ring-primary-foreground/30">
+            <HelpCircle className="h-6 w-6 text-secondary-foreground" strokeWidth={2.5} />
           </div>
           <div>
             <h2 className="text-2xl font-extrabold leading-tight tracking-tight text-primary-foreground">
@@ -347,11 +347,11 @@ export default function FAQ() {
                   <AccordionItem value="q" className="border-0">
                     <AccordionTrigger className="px-4 py-4 text-left text-sm font-semibold text-foreground hover:no-underline [&>svg]:text-primary">
                       <span className="flex items-start gap-3 pr-2">
-                        <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                          <HelpCircle className="h-4 w-4" />
+                        <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                          <item.icon className="h-[18px] w-[18px]" />
                         </span>
                         <span className="flex flex-col items-start gap-1.5">
-                          <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-primary">
+                          <span className="inline-flex items-center rounded-full bg-secondary/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-secondary-foreground">
                             {item.category}
                           </span>
                           <span className="leading-snug">{item.q}</span>
