@@ -20,18 +20,27 @@ interface FAQItem {
 const faqs: FAQItem[] = [
   {
     category: "Governance",
-    keywords: "sabs nrcs department energy responsible implementing",
+    keywords: "sabs nrcs department energy responsible implementing gef undp funding",
     q: "Who is responsible for implementing Appliance Standards and Labelling?",
     a: (
       <>
-        The Department of Energy has primary responsibility for establishing and overseeing
-        Appliance Standards and Labelling. Implementation is shared by the{" "}
-        <span className="font-semibold text-foreground">South African Bureau of Standards (SABS)</span>
-        , which sets national standards and test procedures, and the{" "}
-        <span className="font-semibold text-foreground">
-          National Regulator for Compulsory Specifications (NRCS)
-        </span>
-        , which enforces and administers the regulations.
+        <p>
+          The Department of Energy has primary responsibility for establishing and overseeing
+          Appliance Standards and Labelling. The programme in South Africa is funded by the{" "}
+          <span className="font-semibold text-foreground">Global Environment Facility (GEF)</span>,
+          with funds administered on GEF's behalf by the{" "}
+          <span className="font-semibold text-foreground">United Nations Development Programme (UNDP)</span>.
+        </p>
+        <p className="mt-2">
+          Implementation is shared by the{" "}
+          <span className="font-semibold text-foreground">South African Bureau of Standards (SABS)</span>
+          , which sets national standards and test procedures and provides facilities to test
+          appliances against MEPS, and the{" "}
+          <span className="font-semibold text-foreground">
+            National Regulator for Compulsory Specifications (NRCS)
+          </span>
+          , which enforces and administers the regulations.
+        </p>
       </>
     ),
   },

@@ -4,16 +4,18 @@ import { appContent } from "@/data/content";
 import welcomeImg from "@/assets/onboarding-welcome.png";
 import compareImg from "@/assets/onboarding-compare.png";
 import labelImg from "@/assets/onboarding-label.png";
+import billImg from "@/assets/onboarding-bill.png";
 import saveImg from "@/assets/onboarding-save.png";
 
 // bump key when tour content changes so existing users see it again
-const STORAGE_KEY = "aec.onboarding.v2.completed";
+const STORAGE_KEY = "aec.onboarding.v3.completed";
 
-const images = [welcomeImg, compareImg, labelImg, saveImg];
+const images = [welcomeImg, compareImg, labelImg, billImg, saveImg];
 const captions = [
   "A quick tour of the app",
   "Tap any appliance to start",
   "Look for kWh/year on the label",
+  "Check your municipal bill for the rate",
   "Smarter choices, lower bills",
 ];
 
@@ -51,6 +53,7 @@ export function Onboarding() {
   const slide = slides[step];
   const image = images[step] ?? images[0];
   const isLabelStep = step === 2;
+  const isBillStep = step === 3;
 
   return (
     <AnimatePresence>
@@ -95,6 +98,11 @@ export function Onboarding() {
                   {isLabelStep && (
                     <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-primary-foreground shadow-elevated">
                       kWh / year
+                    </span>
+                  )}
+                  {isBillStep && (
+                    <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-primary-foreground shadow-elevated">
+                      Rate / kWh
                     </span>
                   )}
                 </div>

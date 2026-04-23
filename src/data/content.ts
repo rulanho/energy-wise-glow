@@ -8,7 +8,7 @@ export const appContent = {
   appName: "Appliance Efficiency Calculator",
   tagline: "Compare appliances. Save energy. Spend smarter.",
   home: {
-    headerTitle: "Compare Appliances",
+    headerTitle: "",
     intro:
       "Enter the details of an appliance to calculate its energy usage and cost. You can compare two appliances before making a purchase decision.",
     helper:
@@ -30,6 +30,10 @@ export const appContent = {
     {
       title: "Use the energy label",
       body: "Enter the kWh/year value from the appliance energy label for accurate results.",
+    },
+    {
+      title: "Know your electricity rate",
+      body: "Find your cost per kWh on your municipal electricity bill — it's usually listed as a tariff or rate per kWh.",
     },
     {
       title: "Save money. Save energy.",
