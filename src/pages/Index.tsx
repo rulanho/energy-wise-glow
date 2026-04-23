@@ -52,6 +52,23 @@ export default function Index() {
             Find the Annual Energy Consumption (kWh/year) on the appliance energy label.
           </p>
         </motion.div>
+
+        {/* Avg electricity rate */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35, duration: 0.4 }}
+          className="mt-3 flex items-center justify-between rounded-xl bg-primary-foreground/10 p-3"
+        >
+          <div className="flex items-center gap-2">
+            <Zap className="h-4 w-4 shrink-0 text-secondary" />
+            <span className="text-xs text-primary-foreground/85">{c.avgRateLabel}</span>
+          </div>
+          <div className="text-right">
+            <div className="text-sm font-bold text-primary-foreground">{c.avgRate}</div>
+            <div className="text-[10px] text-primary-foreground/70">{c.avgRateUnit}</div>
+          </div>
+        </motion.div>
       </header>
 
       {/* Appliance Grid */}
