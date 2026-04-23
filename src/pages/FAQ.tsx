@@ -361,7 +361,8 @@ export default function FAQ() {
                   </AccordionItem>
                 </Accordion>
               </motion.div>
-            ))}
+              );
+            })}
           </div>
         )}
       </main>
