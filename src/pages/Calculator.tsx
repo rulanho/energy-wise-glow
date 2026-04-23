@@ -274,6 +274,13 @@ export default function Calculator() {
                 )}
               </div>
 
+              <p className="mt-4 rounded-xl bg-muted/60 p-3 text-[11px] leading-relaxed text-muted-foreground">
+                <span className="font-semibold text-foreground">Disclaimer:</span> The above are
+                estimated running costs for the {appliance.name.toLowerCase()}. Calculations are
+                based on the estimated kWh per annum and should be used as a guide only. Actual
+                kWh per annum will vary depending on how the appliance is used.
+              </p>
+
               {/* Compare prompt */}
               {!compareEnabled && (
                 <motion.div
