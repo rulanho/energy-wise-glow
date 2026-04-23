@@ -344,7 +344,7 @@ export default function FAQ() {
                   <AccordionItem value="q" className="border-0">
                     <AccordionTrigger className="px-4 py-4 text-left text-sm font-semibold text-foreground hover:no-underline [&>svg]:text-primary">
                       <span className="flex items-start gap-3 pr-2">
-                        <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                        <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-secondary/20 text-secondary-foreground">
                           <Icon className="h-4 w-4" />
                         </span>
                         <span className="flex flex-col items-start gap-1.5">
