@@ -93,7 +93,7 @@ export function Onboarding() {
                   initial={{ scale: 0.92, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.1, duration: 0.4, ease: "easeOut" }}
-                  className="relative mb-6 flex h-56 w-56 items-center justify-center rounded-3xl bg-accent/40 shadow-card"
+                  className="relative mb-6 flex h-56 w-56 items-center justify-center overflow-hidden rounded-3xl bg-accent/40 shadow-card"
                 >
                   <motion.img
                     src={image}
@@ -105,14 +105,22 @@ export function Onboarding() {
                     className="h-full w-full object-contain p-3"
                   />
                   {isLabelStep && (
-                    <motion.span
-                      initial={{ scale: 0.6, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ delay: 0.45, duration: 0.35, type: "spring", stiffness: 220 }}
-                      className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-primary-foreground shadow-elevated"
-                    >
-                      kWh / year
-                    </motion.span>
+                    <>
+                      <motion.span
+                        initial={{ opacity: 0, scaleX: 0.4 }}
+                        animate={{ opacity: [0, 0.9, 0.9, 0], scaleX: [0.4, 1, 1, 1] }}
+                        transition={{ delay: 0.5, duration: 2.2, repeat: Infinity, repeatDelay: 0.3, ease: "easeInOut" }}
+                        className="pointer-events-none absolute left-8 right-10 top-1/2 h-2 origin-left -translate-y-1/2 rounded-full bg-secondary/70 blur-[2px]"
+                      />
+                      <motion.span
+                        initial={{ scale: 0.6, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 0.45, duration: 0.35, type: "spring", stiffness: 220 }}
+                        className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-primary-foreground shadow-elevated"
+                      >
+                        kWh / year
+                      </motion.span>
+                    </>
                   )}
                   {isBillStep && (
                     <motion.span
