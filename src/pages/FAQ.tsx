@@ -265,7 +265,7 @@ export default function FAQ() {
 
         <div className="mt-6 flex items-start gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary-foreground/15 backdrop-blur">
-            <Sparkles className="h-5 w-5 text-primary-foreground" />
+            <HelpCircle className="h-5 w-5 text-primary-foreground" />
           </div>
           <div>
             <h2 className="text-2xl font-extrabold leading-tight tracking-tight text-primary-foreground">
