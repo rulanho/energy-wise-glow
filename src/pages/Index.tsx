@@ -30,58 +30,14 @@ export default function Index() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.5 }}
-          className="mt-5"
-        >
-          <h1 className="text-2xl font-extrabold leading-tight text-primary-foreground">
-            Appliance Efficiency Calculator
-          </h1>
-          <p className="mt-1 text-xs font-medium text-primary-foreground/70">
-            Compare appliances. Save energy. Spend smarter.
-          </p>
-        </motion.div>
-
-        <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15, duration: 0.5 }}
           className="mt-6"
         >
           <p className="text-sm leading-relaxed text-primary-foreground/85">
-            {c.intro}
+            Enter the details of an appliance to calculate its energy usage and cost.
           </p>
-        </motion.div>
-
-        {/* Helper / energy label hint */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.25, duration: 0.4 }}
-          className="mt-4 flex items-start gap-2 rounded-xl bg-primary-foreground/10 p-3"
-        >
-          <Tag className="mt-0.5 h-4 w-4 shrink-0 text-secondary" />
-          <p className="text-xs leading-relaxed text-primary-foreground/85">
-            {c.helper}
-          </p>
-        </motion.div>
-
-        {/* Quick stat */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.35, duration: 0.4 }}
-          className="mt-4 flex items-center gap-3 rounded-2xl bg-primary-foreground/15 p-4"
-        >
-          <Zap className="h-8 w-8 text-secondary" />
-          <div>
-            <p className="text-xs font-medium text-primary-foreground/70">{c.avgRateLabel}</p>
-            <p className="text-lg font-bold text-primary-foreground">
-              {c.avgRate}{" "}
-              <span className="text-xs font-normal text-primary-foreground/60">{c.avgRateUnit}</span>
-            </p>
-          </div>
         </motion.div>
       </header>
 
