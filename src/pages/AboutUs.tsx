@@ -157,9 +157,8 @@ export default function AboutUs() {
               <img src={sanediLogo} alt="SANEDI" className="max-h-full max-w-full object-contain" />
             </div>
           </div>
-          <p className="mt-4 text-center text-[10px] text-muted-foreground">
-            © {new Date().getFullYear()} Appliance Efficiency Calculator
-          </p>
+
+
         </motion.div>
       </main>
     </div>
