@@ -32,6 +32,10 @@ export const appContent = {
       body: "Enter the kWh/year value from the appliance energy label for accurate results.",
     },
     {
+      title: "Know your electricity rate",
+      body: "Find your cost per kWh on your municipal electricity bill — it's usually listed as a tariff or rate per kWh.",
+    },
+    {
       title: "Save money. Save energy.",
       body: "Make energy-efficient choices that lower your bill and your carbon footprint.",
     },

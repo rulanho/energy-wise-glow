@@ -35,10 +35,7 @@ export default function Index() {
           transition={{ delay: 0.15, duration: 0.5 }}
           className="mt-6"
         >
-          <h1 className="text-2xl font-extrabold leading-tight text-primary-foreground">
-            {c.headerTitle}
-          </h1>
-          <p className="mt-2 text-sm leading-relaxed text-primary-foreground/85">
+          <p className="text-sm leading-relaxed text-primary-foreground/85">
             {c.intro}
           </p>
         </motion.div>
