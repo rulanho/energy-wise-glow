@@ -348,7 +348,7 @@ export default function FAQ() {
                           <Icon className="h-4 w-4" />
                         </span>
                         <span className="flex flex-col items-start gap-1.5">
-                          <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-primary">
+                          <span className="inline-flex items-center rounded-full bg-secondary/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-secondary">
                             {item.category}
                           </span>
                           <span className="leading-snug">{item.q}</span>
