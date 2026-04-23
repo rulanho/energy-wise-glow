@@ -108,37 +108,45 @@ export default function Tips() {
 
   return (
     <div className="min-h-screen bg-background pb-24">
-      <header className="eco-gradient px-5 pb-8 pt-14">
+      <header className="eco-gradient px-5 pb-10 pt-14">
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate("/")}
-            className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-foreground/20"
+            className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-foreground/20 transition-colors hover:bg-primary-foreground/30"
+            aria-label="Back to home"
           >
             <ArrowLeft className="h-5 w-5 text-primary-foreground" />
           </button>
           <h1 className="text-lg font-bold text-primary-foreground">Energy Saving Tips</h1>
         </div>
-        <div className="mt-4 flex items-center gap-3">
-          <Lightbulb className="h-8 w-8 text-secondary" />
-          <p className="text-sm text-primary-foreground/70">
-            Practical tips to reduce your energy consumption and save money throughout the year.
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="mt-5 flex items-start gap-3 rounded-2xl bg-primary-foreground/10 p-4"
+        >
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-secondary/20">
+            <Lightbulb className="h-5 w-5 text-secondary" />
+          </div>
+          <p className="text-xs leading-relaxed text-primary-foreground/85">
+            Practical, season-aware tips to cut consumption and lower your bill all year round.
           </p>
-        </div>
+        </motion.div>
       </header>
 
-      <main className="-mt-3 rounded-t-3xl bg-background px-5 pt-6">
+      <main className="-mt-6 rounded-t-3xl bg-background px-5 pt-7">
         <Tabs defaultValue="summer" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-5 rounded-xl bg-muted/60 p-1">
+          <TabsList className="mb-5 grid w-full grid-cols-2 rounded-2xl bg-muted/60 p-1">
             <TabsTrigger
               value="summer"
-              className="flex items-center gap-2 rounded-lg data-[state=active]:bg-secondary/20 data-[state=active]:text-secondary data-[state=active]:shadow-sm"
+              className="flex items-center gap-2 rounded-xl text-xs font-semibold data-[state=active]:bg-card data-[state=active]:text-secondary data-[state=active]:shadow-sm"
             >
               <Sun className="h-4 w-4" />
               Summer
             </TabsTrigger>
             <TabsTrigger
               value="winter"
-              className="flex items-center gap-2 rounded-lg data-[state=active]:bg-primary/20 data-[state=active]:text-primary data-[state=active]:shadow-sm"
+              className="flex items-center gap-2 rounded-xl text-xs font-semibold data-[state=active]:bg-card data-[state=active]:text-primary data-[state=active]:shadow-sm"
             >
               <Snowflake className="h-4 w-4" />
               Winter
@@ -152,8 +160,8 @@ export default function Tips() {
               transition={{ duration: 0.3 }}
               className="space-y-3"
             >
-              {summerTips.map((group) => (
-                <TipCard key={group.appliance} group={group} accent="secondary" />
+              {summerTips.map((group, i) => (
+                <TipCard key={group.appliance} group={group} accent="secondary" index={i} />
               ))}
             </motion.div>
           </TabsContent>
@@ -165,8 +173,8 @@ export default function Tips() {
               transition={{ duration: 0.3 }}
               className="space-y-3"
             >
-              {winterTips.map((group) => (
-                <TipCard key={group.appliance} group={group} accent="primary" />
+              {winterTips.map((group, i) => (
+                <TipCard key={group.appliance} group={group} accent="primary" index={i} />
               ))}
             </motion.div>
           </TabsContent>
@@ -176,22 +184,40 @@ export default function Tips() {
   );
 }
 
-function TipCard({ group, accent = "primary" }: { group: Tip; accent?: "primary" | "secondary" }) {
+function TipCard({
+  group,
+  accent = "primary",
+  index = 0,
+}: {
+  group: Tip;
+  accent?: "primary" | "secondary";
+  index?: number;
+}) {
   const IconComponent = applianceIcons[group.appliance];
+  const accentBg = accent === "secondary" ? "bg-secondary/15" : "bg-primary/15";
+  const accentText = accent === "secondary" ? "text-secondary" : "text-primary";
+  const accentDot = accent === "secondary" ? "bg-secondary" : "bg-primary";
   return (
-    <div className="rounded-2xl bg-card p-4 shadow-card">
-      <div className="mb-2 flex items-center gap-2">
-        {IconComponent && <IconComponent className={`h-4 w-4 ${accent === "secondary" ? "text-secondary" : "text-primary"}`} />}
+    <motion.div
+      initial={{ opacity: 0, y: 6 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.04, duration: 0.25 }}
+      className="rounded-2xl bg-card p-4 shadow-card transition-shadow hover:shadow-elevated"
+    >
+      <div className="mb-3 flex items-center gap-3">
+        <div className={`flex h-9 w-9 items-center justify-center rounded-xl ${accentBg}`}>
+          {IconComponent && <IconComponent className={`h-4 w-4 ${accentText}`} />}
+        </div>
         <h3 className="text-sm font-bold text-foreground">{group.appliance}</h3>
       </div>
-      <ul className="space-y-1.5">
+      <ul className="space-y-2 pl-1">
         {group.tips.map((tip, i) => (
-          <li key={i} className="flex gap-2 text-xs text-muted-foreground">
-            <span className={`mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full ${accent === "secondary" ? "bg-secondary" : "bg-primary"}`} />
+          <li key={i} className="flex gap-2.5 text-xs leading-relaxed text-muted-foreground">
+            <span className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${accentDot}`} />
             <span>{tip}</span>
           </li>
         ))}
       </ul>
-    </div>
+    </motion.div>
   );
 }
