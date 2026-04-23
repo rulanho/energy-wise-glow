@@ -19,38 +19,12 @@ interface FAQItem {
 
 const faqs: FAQItem[] = [
   {
-    category: "Governance",
-    keywords: "sabs nrcs department energy responsible implementing gef undp funding",
-    q: "Who is responsible for implementing Appliance Standards and Labelling?",
-    a: (
-      <>
-        <p>
-          The Department of Energy has primary responsibility for establishing and overseeing
-          Appliance Standards and Labelling. The programme in South Africa is funded by the{" "}
-          <span className="font-semibold text-foreground">Global Environment Facility (GEF)</span>,
-          with funds administered on GEF's behalf by the{" "}
-          <span className="font-semibold text-foreground">United Nations Development Programme (UNDP)</span>.
-        </p>
-        <p className="mt-2">
-          Implementation is shared by the{" "}
-          <span className="font-semibold text-foreground">South African Bureau of Standards (SABS)</span>
-          , which sets national standards and test procedures and provides facilities to test
-          appliances against MEPS, and the{" "}
-          <span className="font-semibold text-foreground">
-            National Regulator for Compulsory Specifications (NRCS)
-          </span>
-          , which enforces and administers the regulations.
-        </p>
-      </>
-    ),
-  },
-  {
     category: "Purpose",
     keywords: "why introduced reduce electricity cost co2 emissions manufacturers",
     q: "Why has Appliance Standards and Labelling been introduced?",
     a: (
       <ul className="list-disc space-y-1 pl-5">
-        <li>Reduce the amount of electricity used to run appliances in South Africa.</li>
+        <li>Reduce electricity used to run appliances in South Africa.</li>
         <li>Reduce the cost to consumers of using appliances.</li>
         <li>Reduce CO₂ emissions from power stations.</li>
         <li>Incentivise manufacturers to produce more efficient appliances.</li>
@@ -63,33 +37,41 @@ const faqs: FAQItem[] = [
     q: "What are the objectives of Appliance Standards and Labelling?",
     a: (
       <ul className="list-disc space-y-1 pl-5">
-        <li>Ensure appliances sold in South Africa meet minimum energy performance standards.</li>
-        <li>
-          Ensure consumers can easily understand the likely energy consumption of an appliance
-          before purchase.
-        </li>
+        <li>Ensure appliances sold in SA meet minimum energy performance standards.</li>
+        <li>Help consumers easily understand an appliance's energy use before buying.</li>
       </ul>
     ),
   },
   {
+    category: "Governance",
+    keywords: "sabs nrcs department energy responsible implementing gef undp funding",
+    q: "Who is responsible for implementing Appliance Standards and Labelling?",
+    a: (
+      <p>
+        The <span className="font-semibold text-foreground">Department of Energy</span> oversees
+        the programme, funded by the GEF and administered by the UNDP. Implementation is shared
+        by the <span className="font-semibold text-foreground">SABS</span> (sets standards and
+        tests appliances) and the{" "}
+        <span className="font-semibold text-foreground">NRCS</span> (enforces the regulations).
+      </p>
+    ),
+  },
+  {
     category: "Legislation",
-    keywords: "national energy act 34 2008 vc 9110 9109 8043 9006 9008 9091 regulations gazette",
+    keywords: "national energy act 34 2008 vc 9110 9109 8043 9006 9008 9091 regulations",
     q: "What legislation regulates Appliance Standards and Labelling?",
     a: (
       <>
         <p>
           The <span className="font-semibold text-foreground">National Energy Act No 34 of 2008</span>{" "}
-          allows the Minister of Energy to make regulations on labelling for energy efficiency purposes
-          of household appliances, devices and motor vehicles, and the prohibition of the manufacture,
-          importation or sale of electrical and electronic products and fuel-burning appliances for
-          reasons of poor energy efficiency. Key compulsory specifications (VCs) include:
+          empowers the Minister to regulate energy efficiency labelling and ban inefficient
+          products. Key compulsory specifications (VCs):
         </p>
         <ul className="mt-2 list-disc space-y-1 pl-5">
-          <li>VC 9110 — Safety Requirements of General Service Lamps (GSLs), 2023</li>
-          <li>VC 9109 — Energy Efficiency &amp; Functional Performance of GSLs, 2023</li>
+          <li>VC 9110 / 9109 — General Service Lamps (safety &amp; efficiency), 2023</li>
           <li>VC 8043 — Incandescent Lamps, 2014</li>
-          <li>VC 9006 — Hot Water Storage Tanks for domestic use, 2016</li>
-          <li>VC 9008 — Energy Efficiency &amp; Labelling of Electrical &amp; Electronic Apparatus, 2014</li>
+          <li>VC 9006 — Hot Water Storage Tanks, 2016</li>
+          <li>VC 9008 — Energy Efficiency &amp; Labelling of Electrical Apparatus, 2014</li>
           <li>VC 9091 — Single-Capped Fluorescent Lamps, 2014</li>
         </ul>
       </>
@@ -98,29 +80,26 @@ const faqs: FAQItem[] = [
   {
     category: "Appliances",
     keywords: "which appliances label fridge freezer aircon dishwasher washing machine bulb",
-    q: "Which appliances must display a South African Energy Efficiency Label?",
+    q: "Which appliances must display a SA Energy Efficiency Label?",
     a: (
       <ul className="list-disc space-y-1 pl-5">
         <li>Air Conditioners</li>
         <li>Dishwashers</li>
         <li>Electric Ovens</li>
-        <li>Fridges and Freezers</li>
+        <li>Fridges &amp; Freezers</li>
         <li>Storage Water Heaters</li>
-        <li>Tumble Dryers</li>
-        <li>Washer-dryers</li>
-        <li>Washing Machines</li>
+        <li>Tumble Dryers, Washer-dryers &amp; Washing Machines</li>
         <li>Light bulbs (optional)</li>
       </ul>
     ),
   },
   {
     category: "Labelling",
-    keywords: "label specifications design size sabs guide retailers manufacturers 110 200 55 100",
-    q: "Are there specifications on how the SA Energy Efficiency Label should look and be used?",
+    keywords: "label specifications design size sabs guide retailers manufacturers",
+    q: "Are there specifications for how the label should look?",
     a: (
-      <>
-        Yes. Detailed specifications for the design and use of the label are set out in several
-        South African National Standards published by the SABS. A{" "}
+      <p>
+        Yes — design and use of the label are set out in SABS national standards. See the{" "}
         <a
           href="https://www.savingenergy.org.za/wp-content/uploads/2017/11/A-guide-to-energy-efficiency-labelling.pdf"
           target="_blank"
@@ -128,10 +107,9 @@ const faqs: FAQItem[] = [
           className="font-medium text-primary underline"
         >
           guide to energy efficiency labelling
-        </a>{" "}
-        helps retailers and manufacturers understand the requirements. Most appliance labels are
-        110 mm × 200 mm; light bulb labels are 55 mm × 100 mm and optional.
-      </>
+        </a>
+        . Most labels are 110×200 mm; light bulb labels are 55×100 mm.
+      </p>
     ),
   },
   {
@@ -139,35 +117,30 @@ const faqs: FAQItem[] = [
     keywords: "cost energy run appliance calculator long term",
     q: "What would the cost be of the energy required to run an appliance?",
     a: (
-      <>
-        When purchasing an appliance, it is important to understand how much energy it will use
-        and as a result how much money it costs to run. These calculation tools were created to
-        aid consumers to make more informed decisions by calculating the long-term cost of running
-        an appliance. The tools also estimate the CO₂ emissions of running various appliances.
-      </>
+      <p>
+        These calculators help you estimate the long-term running cost and CO₂ emissions of an
+        appliance, so you can make a more informed purchase decision.
+      </p>
     ),
   },
   {
     category: "Standards",
-    keywords: "meps minimum energy performance standards class b aircon table ratings",
+    keywords: "meps minimum energy performance standards class b aircon ratings",
     q: "What are Minimum Energy Performance Standards (MEPS)?",
     a: (
       <>
         <p>
-          MEPS define the minimum level of energy performance an appliance must meet before it can
-          be sold in South Africa. It is illegal to sell appliances that do not meet the MEPS in
-          the regulations. Specified MEPS include:
+          MEPS define the minimum energy performance an appliance must meet to be sold in SA.
+          Selling appliances below MEPS is illegal. Examples:
         </p>
         <ul className="mt-2 list-disc space-y-1 pl-5">
-          <li>Air Conditioners — Class B or better</li>
-          <li>Audio-visual Equipment — ≤1 W standby (≤3 W for set-top boxes)</li>
-          <li>Dishwashers — Class A</li>
-          <li>Electric Ovens (Large) — Class B; (Small &amp; Medium) — Class A</li>
-          <li>Freezers — Class C</li>
+          <li>Air Conditioners — Class B+</li>
+          <li>Dishwashers, Washing Machines, Washer-dryers — Class A</li>
           <li>Fridges &amp; Fridge-freezers — Class B</li>
+          <li>Freezers — Class C</li>
           <li>Storage Water Heater — Class B</li>
           <li>Tumble Dryers — Class D</li>
-          <li>Washer-dryers &amp; Washing Machines — Class A</li>
+          <li>Audio-visual Equipment — ≤1 W standby</li>
         </ul>
       </>
     ),
@@ -177,42 +150,21 @@ const faqs: FAQItem[] = [
     keywords: "loa letter authority nrcs manufacturer importer 3 years",
     q: "What is a Letter of Authority (LOA)?",
     a: (
-      <>
-        Manufacturers and importers must have a Letter of Authority (LOA) issued by the NRCS
-        before an appliance can be sold in South Africa. The LOA verifies that the appliance
-        conforms to the MEPS for its category. LOAs are valid for 3 years.
-      </>
-    ),
-  },
-  {
-    category: "Standards",
-    keywords: "how apply loa manufacturer importer steps process",
-    q: "How can a manufacturer or importer apply for a Letter of Authority (LOA)?",
-    a: (
-      <>
-        The steps required to apply for a Letter of Authority are outlined in the{" "}
-        <a
-          href="https://www.savingenergy.org.za/asl/manufacturers-and-importers/loa/index.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-medium text-primary underline"
-        >
-          Letter of Authority section
-        </a>{" "}
-        of the savingenergy.org.za website.
-      </>
+      <p>
+        Manufacturers and importers must hold an LOA from the NRCS confirming the appliance meets
+        MEPS before it can be sold in SA. LOAs are valid for 3 years.
+      </p>
     ),
   },
   {
     category: "Compliance",
     keywords: "non compliance recall confiscate destroy regulations",
-    q: "What happens if manufacturers do not conform to the regulations?",
+    q: "What happens if manufacturers do not conform?",
     a: (
-      <>
-        Under the National Regulator for Compulsory Specifications Act, the NRCS can recall
-        non-conforming products, direct importers to return consignments to the country of origin,
-        or order that the consignment be confiscated or destroyed.
-      </>
+      <p>
+        The NRCS can recall non-conforming products, return imports to their country of origin,
+        or order them to be confiscated or destroyed.
+      </p>
     ),
   },
   {
@@ -220,29 +172,24 @@ const faqs: FAQItem[] = [
     keywords: "report non compliance false label nrcs",
     q: "How can non-compliance be reported?",
     a: (
-      <>
-        Appliances carrying a false label or that do not comply with MEPS can be reported to the{" "}
-        <a
-          href="mailto:info@nrcs.org.za"
-          className="font-medium text-primary underline"
-        >
+      <p>
+        False labels or non-compliant appliances can be reported to the{" "}
+        <a href="mailto:info@nrcs.org.za" className="font-medium text-primary underline">
           NRCS
         </a>
         .
-      </>
+      </p>
     ),
   },
   {
     category: "Compliance",
-    keywords: "border sars customs excise prevent imports loa nrcs memorandum",
-    q: "How are non-compliant appliances prevented from entering South Africa?",
+    keywords: "border sars customs excise prevent imports loa nrcs",
+    q: "How are non-compliant appliances kept out of SA?",
     a: (
-      <>
-        The NRCS has signed a memorandum of agreement with the Customs and Excise component of
-        SARS. Under this agreement, no importer is granted market entry into South Africa for
-        appliances within the scope of Appliance Standards and Labelling that do not have a valid
-        LOA issued by the NRCS.
-      </>
+      <p>
+        Through an agreement with SARS Customs &amp; Excise, no importer is granted market entry
+        for in-scope appliances without a valid LOA from the NRCS.
+      </p>
     ),
   },
 ];
