@@ -305,33 +305,38 @@ export default function FAQ() {
             </p>
           </motion.div>
         ) : (
-          <Accordion type="single" collapsible className="mt-3 w-full space-y-2.5">
+          <div className="mt-3 w-full space-y-3">
             {filtered.map((item, i) => (
               <motion.div
                 key={item.q}
-                initial={{ opacity: 0, y: 6 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: Math.min(i * 0.03, 0.2), duration: 0.22 }}
+                className="rounded-2xl border border-border/60 bg-card shadow-card transition-shadow hover:shadow-md"
               >
-                <AccordionItem
-                  value={`q-${i}`}
-                  className="overflow-hidden rounded-2xl border-0 bg-card px-4 shadow-card data-[state=open]:shadow-md"
-                >
-                  <AccordionTrigger className="py-4 text-left text-sm font-semibold text-foreground hover:no-underline [&>svg]:text-primary">
-                    <span className="flex flex-col items-start gap-1.5 pr-3">
-                      <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-primary">
-                        {item.category}
+                <Accordion type="single" collapsible>
+                  <AccordionItem value="q" className="border-0">
+                    <AccordionTrigger className="px-4 py-4 text-left text-sm font-semibold text-foreground hover:no-underline [&>svg]:text-primary">
+                      <span className="flex items-start gap-3 pr-2">
+                        <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                          <HelpCircle className="h-4 w-4" />
+                        </span>
+                        <span className="flex flex-col items-start gap-1.5">
+                          <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-primary">
+                            {item.category}
+                          </span>
+                          <span className="leading-snug">{item.q}</span>
+                        </span>
                       </span>
-                      <span className="leading-snug">{item.q}</span>
-                    </span>
-                  </AccordionTrigger>
-                  <AccordionContent className="border-t border-border/40 pt-3 text-xs leading-relaxed text-muted-foreground">
-                    {item.a}
-                  </AccordionContent>
-                </AccordionItem>
+                    </AccordionTrigger>
+                    <AccordionContent className="mx-4 border-t border-border/40 pb-4 pt-3 text-xs leading-relaxed text-muted-foreground">
+                      {item.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
               </motion.div>
             ))}
-          </Accordion>
+          </div>
         )}
       </main>
     </div>
