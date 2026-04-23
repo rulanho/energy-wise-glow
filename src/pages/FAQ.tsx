@@ -31,6 +31,7 @@ interface FAQItem {
   a: React.ReactNode;
   category: string;
   keywords: string;
+  icon: LucideIcon;
 }
 
 const faqs: FAQItem[] = [
