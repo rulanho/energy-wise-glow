@@ -8,7 +8,7 @@ export const appContent = {
   appName: "Appliance Efficiency Calculator",
   tagline: "Compare appliances. Save energy. Spend smarter.",
   home: {
-    headerTitle: "Compare Appliances",
+    headerTitle: "",
     intro:
       "Enter the details of an appliance to calculate its energy usage and cost. You can compare two appliances before making a purchase decision.",
     helper:
