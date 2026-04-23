@@ -138,15 +138,7 @@ export default function Calculator() {
             className="h-16 w-16 rounded-xl bg-primary-foreground/10 object-contain p-2"
           />
           <p className="text-sm leading-relaxed text-primary-foreground/85">
-            Enter the details of an appliance to calculate its energy usage and cost. You can
-            compare two appliances before making a purchase decision.
-          </p>
-        </div>
-
-        <div className="mt-4 flex items-start gap-2 rounded-xl bg-primary-foreground/10 p-3">
-          <Tag className="mt-0.5 h-4 w-4 shrink-0 text-secondary" />
-          <p className="text-xs leading-relaxed text-primary-foreground/85">
-            Find the Annual Energy Consumption (kWh/year) on the appliance energy label.
+            Enter the details of an appliance to calculate its energy usage and cost.
           </p>
         </div>
       </header>
