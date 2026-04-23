@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, HelpCircle, Search, ExternalLink } from "lucide-react";
+import { ArrowLeft, HelpCircle, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useMemo, useState } from "react";
 import {
@@ -9,7 +9,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 
 interface FAQItem {
   q: string;
@@ -239,9 +238,21 @@ const faqs: FAQItem[] = [
   },
 ];
 
+const CATEGORY_ORDER = [
+  "Purpose",
+  "Governance",
+  "Legislation",
+  "Appliances",
+  "Labelling",
+  "Standards",
+  "Costs",
+  "Compliance",
+];
+
 export default function FAQ() {
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
+  const [openCategory, setOpenCategory] = useState<string | undefined>("Purpose");
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -253,6 +264,23 @@ export default function FAQ() {
         f.category.toLowerCase().includes(q),
     );
   }, [query]);
+
+  // Group by category
+  const grouped = useMemo(() => {
+    const map = new Map<string, FAQItem[]>();
+    filtered.forEach((f) => {
+      if (!map.has(f.category)) map.set(f.category, []);
+      map.get(f.category)!.push(f);
+    });
+    // Sort categories by predefined order
+    return Array.from(map.entries()).sort(
+      (a, b) => CATEGORY_ORDER.indexOf(a[0]) - CATEGORY_ORDER.indexOf(b[0]),
+    );
+  }, [filtered]);
+
+  // When searching, expand all categories that have matches
+  const searching = query.trim().length > 0;
+  const categoryValue = searching ? grouped.map(([c]) => c) : openCategory ? [openCategory] : [];
 
   return (
     <div className="min-h-screen bg-background pb-28">
@@ -267,20 +295,14 @@ export default function FAQ() {
           </button>
           <h1 className="text-lg font-bold text-primary-foreground">FAQs</h1>
         </div>
+      </header>
 
-        <div className="mt-5 flex items-start gap-3">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-primary-foreground/15 backdrop-blur-sm">
-            <HelpCircle className="h-6 w-6 text-secondary" />
-          </div>
-          <div>
-            <h2 className="text-base font-bold text-primary-foreground">
-              How can we help?
-            </h2>
-            <p className="mt-1 text-xs leading-relaxed text-primary-foreground/75">
-              Common questions about Appliance Energy Efficiency, Standards and Labelling in South Africa.
-            </p>
-          </div>
-        </div>
+      <main className="-mt-6 rounded-t-3xl bg-background px-5 pt-7">
+        <h2 className="text-2xl font-extrabold leading-tight tracking-tight text-foreground">
+          Frequently Asked
+          <br />
+          Questions:
+        </h2>
 
         {/* Search */}
         <div className="relative mt-5">
@@ -289,31 +311,15 @@ export default function FAQ() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search questions…"
-            className="h-11 rounded-xl border-0 bg-background pl-9 text-sm shadow-card focus-visible:ring-2 focus-visible:ring-secondary"
+            className="h-11 rounded-2xl border-0 bg-muted pl-9 text-sm shadow-none focus-visible:ring-2 focus-visible:ring-primary/40"
           />
         </div>
-      </header>
 
-      <main className="-mt-5 rounded-t-3xl bg-background px-5 pt-6">
-        <div className="mb-4 flex items-center justify-between">
-          <p className="text-xs font-medium text-muted-foreground">
-            {filtered.length} {filtered.length === 1 ? "question" : "questions"}
-          </p>
-          {query && (
-            <button
-              onClick={() => setQuery("")}
-              className="text-xs font-medium text-primary hover:underline"
-            >
-              Clear
-            </button>
-          )}
-        </div>
-
-        {filtered.length === 0 ? (
+        {grouped.length === 0 ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="rounded-2xl border border-dashed border-border bg-card/50 p-8 text-center"
+            className="mt-6 rounded-2xl border border-dashed border-border bg-card/50 p-8 text-center"
           >
             <HelpCircle className="mx-auto mb-2 h-8 w-8 text-muted-foreground/50" />
             <p className="text-sm font-medium text-foreground">No results found</p>
@@ -322,39 +328,67 @@ export default function FAQ() {
             </p>
           </motion.div>
         ) : (
-          <Accordion type="single" collapsible className="w-full space-y-3">
-            {filtered.map((item, i) => (
+          <Accordion
+            type="multiple"
+            value={categoryValue}
+            onValueChange={(vals) => {
+              if (searching) return;
+              // single-category open behaviour
+              const last = vals[vals.length - 1];
+              setOpenCategory(last);
+            }}
+            className="mt-6 w-full space-y-3"
+          >
+            {grouped.map(([category, items], catIdx) => (
               <motion.div
-                key={item.q}
-                initial={{ opacity: 0, y: 8 }}
+                key={category}
+                initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.03, duration: 0.25 }}
+                transition={{ delay: catIdx * 0.04, duration: 0.25 }}
               >
                 <AccordionItem
-                  value={`item-${i}`}
-                  className="overflow-hidden rounded-2xl border border-border/60 bg-card px-4 shadow-card transition-shadow data-[state=open]:shadow-lg"
+                  value={category}
+                  className="overflow-hidden rounded-2xl border-0 bg-muted/60 px-4 shadow-none data-[state=open]:bg-muted"
                 >
-                  <AccordionTrigger className="gap-3 py-4 text-left text-sm font-semibold text-foreground hover:no-underline">
-                    <div className="flex flex-1 flex-col items-start gap-1.5">
-                      <Badge
-                        variant="secondary"
-                        className="rounded-full bg-primary/10 px-2 py-0 text-[10px] font-medium uppercase tracking-wide text-primary hover:bg-primary/10"
-                      >
-                        {item.category}
-                      </Badge>
-                      <span>{item.q}</span>
-                    </div>
+                  <AccordionTrigger className="py-4 text-left text-sm font-bold text-foreground hover:no-underline">
+                    <span className="flex items-center gap-2">
+                      {category} related questions:
+                      <span className="rounded-full bg-background/70 px-2 py-0.5 text-[10px] font-semibold text-muted-foreground">
+                        {items.length}
+                      </span>
+                    </span>
                   </AccordionTrigger>
-                  <AccordionContent className="border-t border-border/40 pt-3 text-xs leading-relaxed text-muted-foreground">
-                    {item.a}
+                  <AccordionContent className="pt-1">
+                    <div className="space-y-2 pb-2">
+                      {items.map((item, i) => (
+                        <FAQQuestion key={item.q} item={item} index={i} />
+                      ))}
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
               </motion.div>
             ))}
           </Accordion>
         )}
-
       </main>
     </div>
+  );
+}
+
+function FAQQuestion({ item, index }: { item: FAQItem; index: number }) {
+  return (
+    <Accordion type="single" collapsible defaultValue={index === 0 ? "q" : undefined}>
+      <AccordionItem
+        value="q"
+        className="overflow-hidden rounded-xl border-0 bg-card px-3 shadow-card data-[state=open]:shadow-md"
+      >
+        <AccordionTrigger className="py-3 text-left text-xs font-semibold text-foreground hover:no-underline">
+          {item.q}
+        </AccordionTrigger>
+        <AccordionContent className="border-t border-border/40 pt-3 text-xs leading-relaxed text-muted-foreground">
+          {item.a}
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
   );
 }
