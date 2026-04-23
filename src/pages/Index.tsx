@@ -30,6 +30,20 @@ export default function Index() {
         </motion.div>
 
         <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
+          className="mt-5"
+        >
+          <h1 className="text-2xl font-extrabold leading-tight text-primary-foreground">
+            Appliance Efficiency Calculator
+          </h1>
+          <p className="mt-1 text-xs font-medium text-primary-foreground/70">
+            Compare appliances. Save energy. Spend smarter.
+          </p>
+        </motion.div>
+
+        <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15, duration: 0.5 }}
