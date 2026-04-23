@@ -1,29 +1,5 @@
 import { motion } from "framer-motion";
-import {
-  ArrowLeft,
-  HelpCircle,
-  Search,
-  Target,
-  Building2,
-  Scale,
-  Refrigerator,
-  Tag,
-  Wallet,
-  ShieldCheck,
-  AlertTriangle,
-  type LucideIcon,
-} from "lucide-react";
-
-const CATEGORY_ICONS: Record<string, LucideIcon> = {
-  Purpose: Target,
-  Governance: Building2,
-  Legislation: Scale,
-  Appliances: Refrigerator,
-  Labelling: Tag,
-  Standards: ShieldCheck,
-  Costs: Wallet,
-  Compliance: AlertTriangle,
-};
+import { ArrowLeft, HelpCircle, Search, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useMemo, useState } from "react";
 import {
@@ -265,7 +241,7 @@ export default function FAQ() {
 
         <div className="mt-6 flex items-start gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary-foreground/15 backdrop-blur">
-            <HelpCircle className="h-5 w-5 text-primary-foreground" />
+            <Sparkles className="h-5 w-5 text-primary-foreground" />
           </div>
           <div>
             <h2 className="text-2xl font-extrabold leading-tight tracking-tight text-primary-foreground">
@@ -330,9 +306,7 @@ export default function FAQ() {
           </motion.div>
         ) : (
           <div className="mt-3 w-full space-y-3">
-            {filtered.map((item, i) => {
-              const Icon = CATEGORY_ICONS[item.category] ?? HelpCircle;
-              return (
+            {filtered.map((item, i) => (
               <motion.div
                 key={item.q}
                 initial={{ opacity: 0, y: 8 }}
@@ -345,7 +319,7 @@ export default function FAQ() {
                     <AccordionTrigger className="px-4 py-4 text-left text-sm font-semibold text-foreground hover:no-underline [&>svg]:text-primary">
                       <span className="flex items-start gap-3 pr-2">
                         <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                          <Icon className="h-4 w-4" />
+                          <HelpCircle className="h-4 w-4" />
                         </span>
                         <span className="flex flex-col items-start gap-1.5">
                           <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-primary">
@@ -361,8 +335,7 @@ export default function FAQ() {
                   </AccordionItem>
                 </Accordion>
               </motion.div>
-              );
-            })}
+            ))}
           </div>
         )}
       </main>
