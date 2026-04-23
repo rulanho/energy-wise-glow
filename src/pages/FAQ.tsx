@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, HelpCircle, Search } from "lucide-react";
+import { ArrowLeft, HelpCircle, Search, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useMemo, useState } from "react";
 import {
@@ -194,7 +194,8 @@ const faqs: FAQItem[] = [
   },
 ];
 
-const CATEGORY_ORDER = [
+const CATEGORIES = [
+  "All",
   "Purpose",
   "Governance",
   "Legislation",
@@ -203,44 +204,30 @@ const CATEGORY_ORDER = [
   "Standards",
   "Costs",
   "Compliance",
-];
+] as const;
 
 export default function FAQ() {
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
-  const [openCategory, setOpenCategory] = useState<string | undefined>("Purpose");
+  const [activeCategory, setActiveCategory] = useState<string>("All");
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return faqs;
-    return faqs.filter(
-      (f) =>
+    return faqs.filter((f) => {
+      const matchesCategory = activeCategory === "All" || f.category === activeCategory;
+      if (!matchesCategory) return false;
+      if (!q) return true;
+      return (
         f.q.toLowerCase().includes(q) ||
         f.keywords.toLowerCase().includes(q) ||
-        f.category.toLowerCase().includes(q),
-    );
-  }, [query]);
-
-  // Group by category
-  const grouped = useMemo(() => {
-    const map = new Map<string, FAQItem[]>();
-    filtered.forEach((f) => {
-      if (!map.has(f.category)) map.set(f.category, []);
-      map.get(f.category)!.push(f);
+        f.category.toLowerCase().includes(q)
+      );
     });
-    // Sort categories by predefined order
-    return Array.from(map.entries()).sort(
-      (a, b) => CATEGORY_ORDER.indexOf(a[0]) - CATEGORY_ORDER.indexOf(b[0]),
-    );
-  }, [filtered]);
-
-  // When searching, expand all categories that have matches
-  const searching = query.trim().length > 0;
-  const categoryValue = searching ? grouped.map(([c]) => c) : openCategory ? [openCategory] : [];
+  }, [query, activeCategory]);
 
   return (
     <div className="min-h-screen bg-background pb-28">
-      <header className="eco-gradient px-5 pb-10 pt-14">
+      <header className="eco-gradient px-5 pb-16 pt-14">
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate("/")}
@@ -251,75 +238,95 @@ export default function FAQ() {
           </button>
           <h1 className="text-lg font-bold text-primary-foreground">FAQs</h1>
         </div>
+
+        <div className="mt-6 flex items-start gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary-foreground/15 backdrop-blur">
+            <Sparkles className="h-5 w-5 text-primary-foreground" />
+          </div>
+          <div>
+            <h2 className="text-2xl font-extrabold leading-tight tracking-tight text-primary-foreground">
+              How can we help you?
+            </h2>
+            <p className="mt-1 text-sm text-primary-foreground/80">
+              Common questions about appliance energy standards &amp; labelling.
+            </p>
+          </div>
+        </div>
       </header>
 
-      <main className="-mt-6 rounded-t-3xl bg-background px-5 pt-7">
-        <h2 className="text-2xl font-extrabold leading-tight tracking-tight text-foreground">
-          Frequently Asked
-          <br />
-          Questions:
-        </h2>
-
+      <main className="-mt-10 rounded-t-3xl bg-background px-5 pt-6">
         {/* Search */}
-        <div className="relative mt-5">
+        <div className="relative">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search questions…"
-            className="h-11 rounded-2xl border-0 bg-muted pl-9 text-sm shadow-none focus-visible:ring-2 focus-visible:ring-primary/40"
+            className="h-12 rounded-2xl border-0 bg-muted pl-9 text-sm shadow-card focus-visible:ring-2 focus-visible:ring-primary/40"
           />
         </div>
 
-        {grouped.length === 0 ? (
+        {/* Category chips */}
+        <div className="mt-4 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {CATEGORIES.map((cat) => {
+            const active = activeCategory === cat;
+            return (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold transition-all ${
+                  active
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "bg-muted text-muted-foreground hover:bg-muted/80"
+                }`}
+              >
+                {cat}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Results count */}
+        <p className="mt-5 text-xs font-medium text-muted-foreground">
+          {filtered.length} {filtered.length === 1 ? "question" : "questions"}
+          {activeCategory !== "All" && ` in ${activeCategory}`}
+        </p>
+
+        {filtered.length === 0 ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="mt-6 rounded-2xl border border-dashed border-border bg-card/50 p-8 text-center"
+            className="mt-4 rounded-2xl border border-dashed border-border bg-card/50 p-8 text-center"
           >
             <HelpCircle className="mx-auto mb-2 h-8 w-8 text-muted-foreground/50" />
             <p className="text-sm font-medium text-foreground">No results found</p>
             <p className="mt-1 text-xs text-muted-foreground">
-              Try a different search term.
+              Try a different search term or category.
             </p>
           </motion.div>
         ) : (
-          <Accordion
-            type="multiple"
-            value={categoryValue}
-            onValueChange={(vals) => {
-              if (searching) return;
-              // single-category open behaviour
-              const last = vals[vals.length - 1];
-              setOpenCategory(last);
-            }}
-            className="mt-6 w-full space-y-3"
-          >
-            {grouped.map(([category, items], catIdx) => (
+          <Accordion type="single" collapsible className="mt-3 w-full space-y-2.5">
+            {filtered.map((item, i) => (
               <motion.div
-                key={category}
+                key={item.q}
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: catIdx * 0.04, duration: 0.25 }}
+                transition={{ delay: Math.min(i * 0.03, 0.2), duration: 0.22 }}
               >
                 <AccordionItem
-                  value={category}
-                  className="overflow-hidden rounded-2xl border-0 bg-muted/60 px-4 shadow-none data-[state=open]:bg-muted"
+                  value={`q-${i}`}
+                  className="overflow-hidden rounded-2xl border-0 bg-card px-4 shadow-card data-[state=open]:shadow-md"
                 >
-                  <AccordionTrigger className="py-4 text-left text-sm font-bold text-foreground hover:no-underline">
-                    <span className="flex items-center gap-2">
-                      {category} related questions:
-                      <span className="rounded-full bg-background/70 px-2 py-0.5 text-[10px] font-semibold text-muted-foreground">
-                        {items.length}
+                  <AccordionTrigger className="py-4 text-left text-sm font-semibold text-foreground hover:no-underline [&>svg]:text-primary">
+                    <span className="flex flex-col items-start gap-1.5 pr-3">
+                      <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-primary">
+                        {item.category}
                       </span>
+                      <span className="leading-snug">{item.q}</span>
                     </span>
                   </AccordionTrigger>
-                  <AccordionContent className="pt-1">
-                    <div className="space-y-2 pb-2">
-                      {items.map((item, i) => (
-                        <FAQQuestion key={item.q} item={item} index={i} />
-                      ))}
-                    </div>
+                  <AccordionContent className="border-t border-border/40 pt-3 text-xs leading-relaxed text-muted-foreground">
+                    {item.a}
                   </AccordionContent>
                 </AccordionItem>
               </motion.div>
@@ -328,23 +335,5 @@ export default function FAQ() {
         )}
       </main>
     </div>
-  );
-}
-
-function FAQQuestion({ item, index }: { item: FAQItem; index: number }) {
-  return (
-    <Accordion type="single" collapsible defaultValue={index === 0 ? "q" : undefined}>
-      <AccordionItem
-        value="q"
-        className="overflow-hidden rounded-xl border-0 bg-card px-3 shadow-card data-[state=open]:shadow-md"
-      >
-        <AccordionTrigger className="py-3 text-left text-xs font-semibold text-foreground hover:no-underline">
-          {item.q}
-        </AccordionTrigger>
-        <AccordionContent className="border-t border-border/40 pt-3 text-xs leading-relaxed text-muted-foreground">
-          {item.a}
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
   );
 }
