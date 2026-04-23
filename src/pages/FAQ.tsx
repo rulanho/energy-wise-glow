@@ -330,7 +330,9 @@ export default function FAQ() {
           </motion.div>
         ) : (
           <div className="mt-3 w-full space-y-3">
-            {filtered.map((item, i) => (
+            {filtered.map((item, i) => {
+              const Icon = CATEGORY_ICONS[item.category] ?? HelpCircle;
+              return (
               <motion.div
                 key={item.q}
                 initial={{ opacity: 0, y: 8 }}
