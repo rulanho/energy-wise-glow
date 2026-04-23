@@ -8,7 +8,7 @@ import labelImg from "@/assets/onboarding-label.png";
 import billImg from "@/assets/onboarding-bill.png";
 
 // bump key when tour content changes so existing users see it again
-const STORAGE_KEY = "aec.onboarding.v4.completed";
+const STORAGE_KEY = "aec.onboarding.v5.completed";
 
 const images = [welcomeImg, compareImg, labelImg, billImg];
 const captions = [
