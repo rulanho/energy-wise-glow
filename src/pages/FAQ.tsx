@@ -37,6 +37,7 @@ interface FAQItem {
 const faqs: FAQItem[] = [
   {
     category: "Purpose",
+    icon: Target,
     keywords: "why introduced reduce electricity cost co2 emissions manufacturers",
     q: "Why has Appliance Standards and Labelling been introduced?",
     a: (
@@ -50,6 +51,7 @@ const faqs: FAQItem[] = [
   },
   {
     category: "Purpose",
+    icon: Target,
     keywords: "objectives minimum energy performance consumer understanding",
     q: "What are the objectives of Appliance Standards and Labelling?",
     a: (
@@ -61,6 +63,7 @@ const faqs: FAQItem[] = [
   },
   {
     category: "Governance",
+    icon: Building2,
     keywords: "sabs nrcs department energy responsible implementing gef undp funding",
     q: "Who is responsible for implementing Appliance Standards and Labelling?",
     a: (
@@ -75,6 +78,7 @@ const faqs: FAQItem[] = [
   },
   {
     category: "Legislation",
+    icon: Scale,
     keywords: "national energy act 34 2008 vc 9110 9109 8043 9006 9008 9091 regulations",
     q: "What legislation regulates Appliance Standards and Labelling?",
     a: (
@@ -96,6 +100,7 @@ const faqs: FAQItem[] = [
   },
   {
     category: "Appliances",
+    icon: Refrigerator,
     keywords: "which appliances label fridge freezer aircon dishwasher washing machine bulb",
     q: "Which appliances must display a SA Energy Efficiency Label?",
     a: (
@@ -112,6 +117,7 @@ const faqs: FAQItem[] = [
   },
   {
     category: "Labelling",
+    icon: Tag,
     keywords: "label specifications design size sabs guide retailers manufacturers",
     q: "Are there specifications for how the label should look?",
     a: (
@@ -131,6 +137,7 @@ const faqs: FAQItem[] = [
   },
   {
     category: "Costs",
+    icon: Wallet,
     keywords: "cost energy run appliance calculator long term",
     q: "What would the cost be of the energy required to run an appliance?",
     a: (
@@ -142,6 +149,7 @@ const faqs: FAQItem[] = [
   },
   {
     category: "Standards",
+    icon: Gauge,
     keywords: "meps minimum energy performance standards class b aircon ratings",
     q: "What are Minimum Energy Performance Standards (MEPS)?",
     a: (
@@ -164,6 +172,7 @@ const faqs: FAQItem[] = [
   },
   {
     category: "Standards",
+    icon: FileCheck,
     keywords: "loa letter authority nrcs manufacturer importer 3 years",
     q: "What is a Letter of Authority (LOA)?",
     a: (
@@ -175,6 +184,7 @@ const faqs: FAQItem[] = [
   },
   {
     category: "Compliance",
+    icon: ShieldAlert,
     keywords: "non compliance recall confiscate destroy regulations",
     q: "What happens if manufacturers do not conform?",
     a: (
@@ -186,6 +196,7 @@ const faqs: FAQItem[] = [
   },
   {
     category: "Compliance",
+    icon: Megaphone,
     keywords: "report non compliance false label nrcs",
     q: "How can non-compliance be reported?",
     a: (
@@ -200,6 +211,7 @@ const faqs: FAQItem[] = [
   },
   {
     category: "Compliance",
+    icon: ShipWheel,
     keywords: "border sars customs excise prevent imports loa nrcs",
     q: "How are non-compliant appliances kept out of SA?",
     a: (
