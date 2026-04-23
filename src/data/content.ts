@@ -20,12 +20,12 @@ export const appContent = {
   },
   onboarding: [
     {
-      title: "Welcome to Appliance Efficiency Calculator",
-      body: "Your everyday companion for smarter, greener appliance decisions.",
+      title: "Understand what your appliance costs",
+      body: "When purchasing an appliance, it is important to understand how much energy it will use and as a result how much money it costs to run the appliance.",
     },
     {
-      title: "Compare appliances before you buy",
-      body: "Estimate energy costs for two appliances side-by-side and pick the better deal.",
+      title: "Make more informed decisions",
+      body: "These calculation tools were created to aid consumers to make more informed decisions by calculating the long-term cost for running an appliance.",
     },
     {
       title: "Use the energy label",
@@ -34,10 +34,6 @@ export const appContent = {
     {
       title: "Know your electricity rate",
       body: "Find your cost per kWh on your municipal electricity bill — it's usually listed as a tariff or rate per kWh.",
-    },
-    {
-      title: "Save money. Save energy.",
-      body: "Make energy-efficient choices that lower your bill and your carbon footprint.",
     },
   ],
 };

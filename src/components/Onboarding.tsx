@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { appContent } from "@/data/content";
 import welcomeImg from "@/assets/onboarding-welcome.png";
 import compareImg from "@/assets/onboarding-compare.png";
 import labelImg from "@/assets/onboarding-label.png";
 import billImg from "@/assets/onboarding-bill.png";
-import saveImg from "@/assets/onboarding-save.png";
 
 // bump key when tour content changes so existing users see it again
-const STORAGE_KEY = "aec.onboarding.v3.completed";
+const STORAGE_KEY = "aec.onboarding.v4.completed";
 
-const images = [welcomeImg, compareImg, labelImg, billImg, saveImg];
+const images = [welcomeImg, compareImg, labelImg, billImg];
 const captions = [
-  "A quick tour of the app",
-  "Tap any appliance to start",
+  "What this app is for",
+  "Smarter appliance choices",
   "Look for kWh/year on the label",
   "Check your municipal bill for the rate",
-  "Smarter choices, lower bills",
 ];
 
 export function Onboarding() {
@@ -40,8 +39,10 @@ export function Onboarding() {
     setVisible(false);
   };
 
+  const slides = appContent.onboarding;
+
   const next = () => {
-    if (step < appContent.onboarding.length - 1) setStep(step + 1);
+    if (step < slides.length - 1) setStep(step + 1);
     else finish();
   };
 
@@ -49,11 +50,11 @@ export function Onboarding() {
     if (step > 0) setStep(step - 1);
   };
 
-  const slides = appContent.onboarding;
   const slide = slides[step];
   const image = images[step] ?? images[0];
   const isLabelStep = step === 2;
   const isBillStep = step === 3;
+  const isLastStep = step === slides.length - 1;
 
   return (
     <AnimatePresence>
@@ -88,24 +89,42 @@ export function Onboarding() {
                 transition={{ duration: 0.3 }}
                 className="flex w-full max-w-sm flex-col items-center"
               >
-                <div className="relative mb-6 flex h-56 w-56 items-center justify-center rounded-3xl bg-accent/40 shadow-card">
-                  <img
+                <motion.div
+                  initial={{ scale: 0.92, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.1, duration: 0.4, ease: "easeOut" }}
+                  className="relative mb-6 flex h-56 w-56 items-center justify-center rounded-3xl bg-accent/40 shadow-card"
+                >
+                  <motion.img
                     src={image}
                     alt={slide.title}
                     loading="lazy"
+                    initial={{ y: 8, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.45, ease: "easeOut" }}
                     className="h-full w-full object-contain p-3"
                   />
                   {isLabelStep && (
-                    <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-primary-foreground shadow-elevated">
+                    <motion.span
+                      initial={{ scale: 0.6, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 0.45, duration: 0.35, type: "spring", stiffness: 220 }}
+                      className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-primary-foreground shadow-elevated"
+                    >
                       kWh / year
-                    </span>
+                    </motion.span>
                   )}
                   {isBillStep && (
-                    <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-primary-foreground shadow-elevated">
+                    <motion.span
+                      initial={{ scale: 0.6, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 0.45, duration: 0.35, type: "spring", stiffness: 220 }}
+                      className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-primary-foreground shadow-elevated"
+                    >
                       Rate / kWh
-                    </span>
+                    </motion.span>
                   )}
-                </div>
+                </motion.div>
                 <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-primary">
                   {captions[step]}
                 </p>
@@ -130,22 +149,38 @@ export function Onboarding() {
                 />
               ))}
             </div>
-            <div className="flex items-center gap-3">
-              {step > 0 && (
+            <div className="flex items-center justify-between">
+              <motion.button
+                whileTap={{ scale: 0.92 }}
+                onClick={back}
+                disabled={step === 0}
+                aria-label="Previous"
+                className="flex h-14 w-14 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-card disabled:opacity-30"
+              >
+                <ChevronLeft className="h-6 w-6" />
+              </motion.button>
+
+              {isLastStep ? (
                 <motion.button
                   whileTap={{ scale: 0.97 }}
-                  onClick={back}
-                  className="rounded-2xl border border-border bg-card px-5 py-4 text-sm font-bold text-foreground"
+                  onClick={finish}
+                  className="rounded-full eco-gradient px-6 py-4 text-sm font-bold text-primary-foreground shadow-elevated"
                 >
-                  Back
+                  Get Started
                 </motion.button>
+              ) : (
+                <span className="text-xs font-medium text-muted-foreground">
+                  Tap to continue
+                </span>
               )}
+
               <motion.button
-                whileTap={{ scale: 0.97 }}
+                whileTap={{ scale: 0.92 }}
                 onClick={next}
-                className="flex-1 rounded-2xl eco-gradient py-4 text-base font-bold text-primary-foreground shadow-elevated"
+                aria-label="Next"
+                className="flex h-14 w-14 items-center justify-center rounded-full eco-gradient text-primary-foreground shadow-elevated"
               >
-                {step === slides.length - 1 ? "Get Started" : "Next"}
+                <ChevronRight className="h-6 w-6" />
               </motion.button>
             </div>
           </div>
