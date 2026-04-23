@@ -1,5 +1,29 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, HelpCircle, Search, Sparkles } from "lucide-react";
+import {
+  ArrowLeft,
+  HelpCircle,
+  Search,
+  Target,
+  Building2,
+  Scale,
+  Refrigerator,
+  Tag,
+  Wallet,
+  ShieldCheck,
+  AlertTriangle,
+  type LucideIcon,
+} from "lucide-react";
+
+const CATEGORY_ICONS: Record<string, LucideIcon> = {
+  Purpose: Target,
+  Governance: Building2,
+  Legislation: Scale,
+  Appliances: Refrigerator,
+  Labelling: Tag,
+  Standards: ShieldCheck,
+  Costs: Wallet,
+  Compliance: AlertTriangle,
+};
 import { useNavigate } from "react-router-dom";
 import { useMemo, useState } from "react";
 import {
