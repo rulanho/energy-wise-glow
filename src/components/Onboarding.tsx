@@ -87,7 +87,15 @@ export function Onboarding() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -24 }}
                 transition={{ duration: 0.3 }}
-                className="flex w-full max-w-sm flex-col items-center"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragEnd={(_, info) => {
+                  const threshold = 60;
+                  if (info.offset.x < -threshold || info.velocity.x < -400) next();
+                  else if (info.offset.x > threshold || info.velocity.x > 400) back();
+                }}
+                className="flex w-full max-w-sm flex-col items-center touch-pan-y cursor-grab active:cursor-grabbing"
               >
                 <motion.div
                   initial={{ scale: 0.92, opacity: 0 }}
@@ -99,10 +107,11 @@ export function Onboarding() {
                     src={image}
                     alt={slide.title}
                     loading="lazy"
+                    draggable={false}
                     initial={{ y: 8, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.2, duration: 0.45, ease: "easeOut" }}
-                    className="h-full w-full object-contain p-3"
+                    className="h-full w-full object-contain p-3 pointer-events-none select-none"
                   />
                   {isLabelStep && (
                     <>
@@ -141,6 +150,9 @@ export function Onboarding() {
                 </h2>
                 <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted-foreground">
                   {slide.body}
+                </p>
+                <p className="mt-4 text-[10px] font-medium uppercase tracking-wider text-muted-foreground/70">
+                  Swipe to navigate
                 </p>
               </motion.div>
             </AnimatePresence>
