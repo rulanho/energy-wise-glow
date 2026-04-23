@@ -269,8 +269,8 @@ export default function FAQ() {
         </div>
 
         <div className="mt-6 flex items-start gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-secondary shadow-elevated ring-2 ring-primary-foreground/30">
-            <HelpCircle className="h-6 w-6 text-secondary-foreground" strokeWidth={2.5} />
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary-foreground/15 backdrop-blur">
+            <HelpCircle className="h-6 w-6 text-secondary" strokeWidth={2.5} />
           </div>
           <div>
             <h2 className="text-2xl font-extrabold leading-tight tracking-tight text-primary-foreground">
