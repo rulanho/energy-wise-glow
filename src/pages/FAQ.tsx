@@ -1,5 +1,21 @@
 import { motion } from "framer-motion";
-import { ArrowLeft, HelpCircle, Search, Sparkles } from "lucide-react";
+import {
+  ArrowLeft,
+  HelpCircle,
+  Search,
+  Target,
+  Building2,
+  Scale,
+  Refrigerator,
+  Tag,
+  Wallet,
+  Gauge,
+  FileCheck,
+  ShieldAlert,
+  Megaphone,
+  ShipWheel,
+  type LucideIcon,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useMemo, useState } from "react";
 import {
