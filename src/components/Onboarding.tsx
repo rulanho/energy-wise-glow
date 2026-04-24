@@ -101,7 +101,7 @@ export function Onboarding() {
                   initial={{ scale: 0.92, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.1, duration: 0.4, ease: "easeOut" }}
-                  className="relative mb-6 flex h-56 w-56 items-center justify-center overflow-hidden rounded-3xl bg-accent/40 shadow-card"
+                  className="relative mb-8 flex h-56 w-56 items-center justify-center rounded-3xl bg-accent/40 shadow-card"
                 >
                   <motion.img
                     src={image}
