@@ -4,9 +4,17 @@ import { useNavigate } from "react-router-dom";
 import eeiLogo from "@/assets/eei-logo.png";
 import mineralLogo from "@/assets/mineral-resources-logo.png";
 import sanediLogo from "@/assets/sanedi-logo.png";
+import { useAboutSections } from "@/hooks/useContent";
+import { cleanHtml } from "@/lib/sanitize";
 
 export default function AboutUs() {
   const navigate = useNavigate();
+  const { data: sections = [] } = useAboutSections();
+  const get = (key: string) => sections.find((s) => s.key === key);
+  const purpose = get("purpose");
+  const recycling = get("recycling");
+  const compliance = get("compliance");
+  const proseClass = "prose prose-sm max-w-none text-sm leading-relaxed text-muted-foreground [&_a]:text-primary [&_a]:underline [&_ul]:list-disc [&_ul]:pl-5 [&_p]:m-0";
 
   return (
     <div className="min-h-screen bg-background pb-28">
@@ -52,13 +60,9 @@ export default function AboutUs() {
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/15">
               <Info className="h-4 w-4 text-primary" />
             </div>
-            <h2 className="text-base font-bold text-foreground">Our purpose</h2>
+            <h2 className="text-base font-bold text-foreground">{purpose?.title ?? "Our purpose"}</h2>
           </div>
-          <p className="text-sm leading-relaxed text-muted-foreground">
-            This initiative is administered through a QR code on the energy efficiency (EE) labels
-            that leads users to the calculator and other residential EE and product information,
-            helping consumers make better-informed purchase decisions.
-          </p>
+          <div className={proseClass} dangerouslySetInnerHTML={{ __html: cleanHtml(purpose?.body_html ?? "") }} />
         </motion.div>
 
         {/* Recycling */}
@@ -72,13 +76,9 @@ export default function AboutUs() {
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/15">
               <Recycle className="h-4 w-4 text-primary" />
             </div>
-            <h2 className="text-base font-bold text-foreground">Recycle old appliances</h2>
+            <h2 className="text-base font-bold text-foreground">{recycling?.title ?? "Recycle old appliances"}</h2>
           </div>
-          <p className="text-sm leading-relaxed text-muted-foreground">
-            The EPR Waste Association of South Africa (eWASA) is a registered Producer
-            Responsibility Organisation for Electrical &amp; Electronic Equipment, lighting,
-            batteries, and more. Reach out to find a drop-off near you.
-          </p>
+          <div className={proseClass} dangerouslySetInnerHTML={{ __html: cleanHtml(recycling?.body_html ?? "") }} />
           <div className="mt-4 grid gap-2">
             <a
               href="mailto:info@ewasa.org"
@@ -108,12 +108,9 @@ export default function AboutUs() {
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-secondary/20">
               <ShieldAlert className="h-4 w-4 text-secondary" />
             </div>
-            <h2 className="text-base font-bold text-foreground">Report non-compliance</h2>
+            <h2 className="text-base font-bold text-foreground">{compliance?.title ?? "Report non-compliance"}</h2>
           </div>
-          <p className="text-sm leading-relaxed text-muted-foreground">
-            NRCS inspectors monitor regulated products in the market. If you see a false energy
-            label or suspect non-compliance, let them know.
-          </p>
+          <div className={proseClass} dangerouslySetInnerHTML={{ __html: cleanHtml(compliance?.body_html ?? "") }} />
           <div className="mt-4 grid gap-2">
             <a
               href="mailto:info@nrcs.org.za"
@@ -157,9 +154,14 @@ export default function AboutUs() {
               <img src={sanediLogo} alt="SANEDI" className="max-h-full max-w-full object-contain" />
             </div>
           </div>
-
-
         </motion.div>
+
+        <button
+          onClick={() => navigate("/auth")}
+          className="mx-auto mt-6 block text-[10px] font-medium uppercase tracking-wider text-muted-foreground/60 hover:text-muted-foreground"
+        >
+          Admin
+        </button>
       </main>
     </div>
   );

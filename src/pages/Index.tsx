@@ -3,10 +3,13 @@ import { Zap, Tag } from "lucide-react";
 import { appliances } from "@/data/appliances";
 import { ApplianceCard } from "@/components/ApplianceCard";
 import { appContent } from "@/data/content";
+import { useAppStrings } from "@/hooks/useContent";
 import eeiLogo from "@/assets/eei-logo.png";
 
 export default function Index() {
+  const { data: strings } = useAppStrings();
   const c = appContent.home;
+  const get = (k: string, fallback: string) => strings?.[k] ?? fallback;
   return (
     <div className="min-h-screen bg-background pb-20">
       {/* Header */}
@@ -36,7 +39,7 @@ export default function Index() {
           className="mt-6"
         >
           <p className="text-sm leading-relaxed text-primary-foreground/85">
-            Enter the details of an appliance to calculate its energy usage and cost.
+            {get("home.intro", c.intro)}
           </p>
         </motion.div>
 
@@ -49,7 +52,7 @@ export default function Index() {
         >
           <Tag className="mt-0.5 h-4 w-4 shrink-0 text-secondary" />
           <p className="text-xs leading-relaxed text-primary-foreground/85">
-            Find the Annual Energy Consumption (kWh/year) on the appliance energy label.
+            {get("home.helper", c.helper)}
           </p>
         </motion.div>
 
@@ -62,18 +65,18 @@ export default function Index() {
         >
           <div className="flex items-center gap-2">
             <Zap className="h-4 w-4 shrink-0 text-secondary" />
-            <span className="text-xs text-primary-foreground/85">{c.avgRateLabel}</span>
+            <span className="text-xs text-primary-foreground/85">{get("home.avgRateLabel", c.avgRateLabel)}</span>
           </div>
           <div className="text-right">
-            <div className="text-sm font-bold text-primary-foreground">{c.avgRate}</div>
-            <div className="text-[10px] text-primary-foreground/70">{c.avgRateUnit}</div>
+            <div className="text-sm font-bold text-primary-foreground">{get("home.avgRate", c.avgRate)}</div>
+            <div className="text-[10px] text-primary-foreground/70">{get("home.avgRateUnit", c.avgRateUnit)}</div>
           </div>
         </motion.div>
       </header>
 
       {/* Appliance Grid */}
       <main className="-mt-4 rounded-t-3xl bg-background px-5 pt-6 pb-6">
-        <h2 className="mb-4 text-base font-bold text-foreground">{c.selectHeading}</h2>
+        <h2 className="mb-4 text-base font-bold text-foreground">{get("home.selectHeading", c.selectHeading)}</h2>
         <div className="grid grid-cols-2 gap-3">
           {appliances.map((appliance, i) => (
             <ApplianceCard key={appliance.id} appliance={appliance} index={i} />
