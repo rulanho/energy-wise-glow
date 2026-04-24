@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,66 +10,31 @@ import Tips from "./pages/Tips";
 import FAQ from "./pages/FAQ";
 import AboutUs from "./pages/AboutUs";
 import NotFound from "./pages/NotFound";
-import Auth from "./pages/Auth";
-import AdminLayout from "./pages/admin/AdminLayout";
-import AdminStrings from "./pages/admin/AdminStrings";
-import AdminTips from "./pages/admin/AdminTips";
-import AdminFaqs from "./pages/admin/AdminFaqs";
-import AdminAbout from "./pages/admin/AdminAbout";
 import { SplashScreen } from "@/components/SplashScreen";
 import { Onboarding } from "@/components/Onboarding";
-import { AuthProvider } from "@/hooks/useAuth";
-import { isCmsHost } from "@/lib/cms-host";
 
 const queryClient = new QueryClient();
 
-function CmsApp() {
-  return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/admin" replace />} />
-      <Route path="/auth" element={<Auth />} />
-      <Route path="/admin" element={<AdminLayout />}>
-        <Route index element={<AdminStrings />} />
-        <Route path="tips" element={<AdminTips />} />
-        <Route path="faqs" element={<AdminFaqs />} />
-        <Route path="about" element={<AdminAbout />} />
-      </Route>
-      <Route path="*" element={<Navigate to="/admin" replace />} />
-    </Routes>
-  );
-}
-
-function PublicApp() {
-  return (
-    <>
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
       <SplashScreen />
       <Onboarding />
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/calculator/:id" element={<Calculator />} />
-        <Route path="/tips" element={<Tips />} />
-        <Route path="/faq" element={<FAQ />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <BottomNav />
-    </>
-  );
-}
-
-const App = () => {
-  const cms = isCmsHost();
-  return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <AuthProvider>{cms ? <CmsApp /> : <PublicApp />}</AuthProvider>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
-  );
-};
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/calculator/:id" element={<Calculator />} />
+          <Route path="/tips" element={<Tips />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <BottomNav />
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
 
 export default App;
