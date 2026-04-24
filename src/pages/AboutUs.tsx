@@ -154,9 +154,14 @@ export default function AboutUs() {
               <img src={sanediLogo} alt="SANEDI" className="max-h-full max-w-full object-contain" />
             </div>
           </div>
-
-
         </motion.div>
+
+        <button
+          onClick={() => navigate("/auth")}
+          className="mx-auto mt-6 block text-[10px] font-medium uppercase tracking-wider text-muted-foreground/60 hover:text-muted-foreground"
+        >
+          Admin
+        </button>
       </main>
     </div>
   );
