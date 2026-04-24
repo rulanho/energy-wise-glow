@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { appContent } from "@/data/content";
+import { useAppStrings } from "@/hooks/useContent";
 import welcomeImg from "@/assets/onboarding-welcome.png";
 import compareImg from "@/assets/onboarding-compare.png";
 import labelImg from "@/assets/onboarding-label.png";
@@ -39,7 +40,11 @@ export function Onboarding() {
     setVisible(false);
   };
 
-  const slides = appContent.onboarding;
+  const { data: strings } = useAppStrings();
+  const slides = appContent.onboarding.map((s, i) => ({
+    title: strings?.[`onboarding.${i + 1}.title`] ?? s.title,
+    body: strings?.[`onboarding.${i + 1}.body`] ?? s.body,
+  }));
 
   const next = () => {
     if (step < slides.length - 1) setStep(step + 1);
