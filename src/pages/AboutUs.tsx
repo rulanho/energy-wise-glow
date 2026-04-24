@@ -4,9 +4,17 @@ import { useNavigate } from "react-router-dom";
 import eeiLogo from "@/assets/eei-logo.png";
 import mineralLogo from "@/assets/mineral-resources-logo.png";
 import sanediLogo from "@/assets/sanedi-logo.png";
+import { useAboutSections } from "@/hooks/useContent";
+import { cleanHtml } from "@/lib/sanitize";
 
 export default function AboutUs() {
   const navigate = useNavigate();
+  const { data: sections = [] } = useAboutSections();
+  const get = (key: string) => sections.find((s) => s.key === key);
+  const purpose = get("purpose");
+  const recycling = get("recycling");
+  const compliance = get("compliance");
+  const proseClass = "prose prose-sm max-w-none text-sm leading-relaxed text-muted-foreground [&_a]:text-primary [&_a]:underline [&_ul]:list-disc [&_ul]:pl-5 [&_p]:m-0";
 
   return (
     <div className="min-h-screen bg-background pb-28">
