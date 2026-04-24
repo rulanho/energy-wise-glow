@@ -3,10 +3,13 @@ import { Zap, Tag } from "lucide-react";
 import { appliances } from "@/data/appliances";
 import { ApplianceCard } from "@/components/ApplianceCard";
 import { appContent } from "@/data/content";
+import { useAppStrings } from "@/hooks/useContent";
 import eeiLogo from "@/assets/eei-logo.png";
 
 export default function Index() {
+  const { data: strings } = useAppStrings();
   const c = appContent.home;
+  const get = (k: string, fallback: string) => strings?.[k] ?? fallback;
   return (
     <div className="min-h-screen bg-background pb-20">
       {/* Header */}

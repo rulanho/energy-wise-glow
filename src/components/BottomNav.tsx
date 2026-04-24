@@ -12,6 +12,10 @@ export function BottomNav() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  if (location.pathname.startsWith("/admin") || location.pathname.startsWith("/auth")) {
+    return null;
+  }
+
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-card/95 backdrop-blur-md">
       <div className="mx-auto flex max-w-md items-center justify-around py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
